@@ -1,20 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { styled } from '@mui/material/styles';
+import UserPageList from '../UserPageList/UserPageList';
+
+//MUI
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 function UserPage() {
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const dispatch = useDispatch();
@@ -42,13 +35,14 @@ function UserPage() {
       <Grid container spacing={3}>
         {recipes.map((recipe) => {
           return (
-            <Grid item xs key={recipe.id}>
-              <Item>
-              <p>{recipe.title}</p>
-              <img src={recipe.poster} />
-              </Item>
+            <UserPageList key={recipe.id} recipe={recipe}/>
+            // <Grid item xs key={recipe.id}>
+            //   <Item>
+            //   <p>{recipe.title}</p>
+            //   <img src={recipe.poster} />
+            //   </Item>
 
-            </Grid>
+            // </Grid>
           )
         })}
       </Grid>
