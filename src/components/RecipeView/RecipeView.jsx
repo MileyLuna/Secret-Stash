@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -10,9 +11,15 @@ function RecipeView() {
     console.log('this recipe_id is:', id);
 
     //Bring over stores to map out all of selected recipe information
-    const recipe = useSelector((store) => store.recipe);
+    const recipes = useSelector((store) => store.recipe);
     const ingredients = useSelector((store) => store.ingredient);
     const instructions = useSelector((store) => store.instruction);
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id});
+        dispatch({ type: 'FETCH_INGREDIENT', payload: id});
+        dispatch({ type: 'FETCH_INSTRUCTION', payload: id});
+    },[])
 
     //back button
     const handleBack = () => {
@@ -23,8 +30,30 @@ function RecipeView() {
 
 
     return (
-        <>
-        </>
+        <div>
+            <h1>{recipes[0].title}</h1>
+            <img src={recipes[0].poster}/>
+
+        {ingredients.map((ing) => {
+            return(
+                <div key={ing.id}>
+                    <p>{ing.amount} {ing.unit} {ing.ingredient}</p>
+                </div>
+            )
+        })}
+
+        {instructions.map((ins)=> {
+            return(
+                <div key={ins.id}> 
+                <p>{ins.step_num}. {ins.text}</p>
+                </div>
+            
+            )
+        })}
+
+            <button onClick={handleBack}>BACK</button>
+        </div>
+
     )
 }
 
