@@ -12,11 +12,11 @@ function* fetchRecipe() {
     }
 }
 
-function* fetchRecipeDetail() {
+function* fetchRecipeDetail(action) {
     try {
         // passes the username and password from the payload to the server
 
-        const recDetail = yield axios.get(`/api/recipe/${action.payload}`);
+        const recDetail = yield axios.get(`/api/recipe/detail/${action.payload}`);
         console.log('fetch RECIPE DETAIL:', recDetail.data);
         yield put({ type: 'SET_RECIPE', payload: recDetail.data });
     } catch (error) {
@@ -24,23 +24,23 @@ function* fetchRecipeDetail() {
     }
 }
 
-function* fetchIngredient() {
+function* fetchIngredient(action) {
     try {
         // passes the username and password from the payload to the server
 
-        const ingDetail = yield axios.get(`/api/ing/${action.payload}`);
-        console.log('fetch INGREDIENT:', ingDetail.data);
+        const ingDetail = yield axios.get(`/api/ing/detail/${action.payload}`);
+        // console.log('fetch INGREDIENT:', ingDetail.data);
         yield put({ type: 'SET_INGREDIENT', payload: ingDetail.data });
     } catch (error) {
         console.log('ERROR in fetchIngredient:', error);
     }
 }
 
-function* fetchInstruction() {
+function* fetchInstruction(action) {
     try {
         // passes the username and password from the payload to the server
 
-        const insDetail = yield axios.get(`/api/ins/${action.payload}`);
+        const insDetail = yield axios.get(`/api/ins/detail/${action.payload}`);
         console.log('fetch INSTRUCTION:', insDetail.data);
         yield put({ type: 'SET_INSTRUCTION', payload: insDetail.data });
     } catch (error) {
