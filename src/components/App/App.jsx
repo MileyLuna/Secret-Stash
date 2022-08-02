@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+import RecipeView from '../RecipeView/RecipeView';
+
 import './App.css';
 
 function App() {
@@ -115,6 +117,15 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+
+
+        <Route path="/view/:id">
+          <RecipeView />
+        </Route>
+
+
+
+
         <Footer />
       </div>
     </Router>
