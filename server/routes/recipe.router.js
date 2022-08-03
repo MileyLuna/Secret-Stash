@@ -33,7 +33,27 @@ router.get('/detail/:id', (req, res) => {
             res.send(result.rows);
         })
         .catch(err => {
-            console.log('ERROR: Get user recipe', err);
+            console.log('ERROR: Get selected recipe', err);
+            res.sendStatus(500)
+        })
+    }else {
+        res.sendStatus(403);
+    }
+
+
+});
+
+//GET user recipe information
+router.get('/user', (req, res) => {
+    if (req.isAuthenticated()) {
+
+    const query = `SELECT * FROM "recipe" WHERE "user_id" = $1;`;
+    pool.query(query,[req.user.user_id])
+        .then(result => {
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get selected recipe', err);
             res.sendStatus(500)
         })
     }else {
