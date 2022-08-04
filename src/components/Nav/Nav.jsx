@@ -29,7 +29,7 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/stash">
-              Info Page
+              My Stash
             </Link>
 
             <LogOutButton className="navLink" />

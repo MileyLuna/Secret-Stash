@@ -18,7 +18,7 @@ function* fetchRecipeDetail(action) {
 
         const recipeDetail = yield axios.get(`/api/recipe/detail/${action.payload}`);
         console.log('fetch RECIPE DETAIL:', recipeDetail.data);
-        yield put({ type: 'SET_RECIPE', payload: recipeDetail.data });
+        yield put({ type: 'SET_RECIPE_DETAIL', payload: recipeDetail.data });
     } catch (error) {
         console.log('ERROR in fetchRecipeDetail:', error);
     }
@@ -48,10 +48,10 @@ function* fetchInstruction(action) {
     }
 }
 
-function* userRecipe(){
+function* fetchUserRecipe(){
     try{
-        const response = yield axios.get('/api/user');
-        yield put({ type: 'SET_USER_RECIPE', payload: response.data });
+        const response = yield axios.get('/api/recipe/user');
+        yield put({ type: 'SET_RECIPE', payload: response.data });
     }
     catch (error) {
         console.log('ERROR in userRecipe:', error);
@@ -66,7 +66,7 @@ function* recipeSaga() {
     yield takeEvery('FETCH_INGREDIENT', fetchIngredient);
     yield takeEvery('FETCH_INSTRUCTION', fetchInstruction);
 
-    yield takeEvery('USER_RECIPE', userRecipe);
+    yield takeEvery('FETCH_USER_RECIPE', fetchUserRecipe);
 }
 
 export default recipeSaga;

@@ -1,20 +1,28 @@
+import { useHistory } from "react-router-dom";
 
 function AddRecipe(){
 
+    const history = useHistory();
+
     const handleBack = () => {
         console.log('clicked back');
+        history.push('/stash');
+
     }
 
     const handleSave = () => {
         console.log('clicked save');
+        //post to update the DB
     }
 
-    const ingreEdit = () => {
+    const ingredientEdit = () => {
         console.log('ingredient edit clicked');
+        history.push('/ingredient');
     }
 
-    const instrucEdit = () => {
+    const instructionEdit = () => {
         console.log('instruction edit clicked');
+        history.push('/instruction');
     }
 
     return(
@@ -23,12 +31,12 @@ function AddRecipe(){
 
         <div>
             <p>Ingredients</p>
-            <button onClick={ingreEdit}>EDIT</button>
+            <button onClick={ingredientEdit}>EDIT</button>
         </div>
 
         <div>
             <p>Intruction</p>
-            <button onClick={instrucEdit}>EDIT</button>
+            <button onClick={instructionEdit}>EDIT</button>
         </div>
 
         <button onClick={handleBack}>BACK</button>
