@@ -1,6 +1,5 @@
 //MUI 
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
@@ -86,7 +85,6 @@ function Ingredient() {
 
             {/* output text TextField */}
             <div className='text'>
-                <h3>list goes here</h3>
                 {holds.map((hold, i)=> {
                     return(
                         <p key={i}> {hold.amount} {hold.unit} {hold.ingredient} </p>

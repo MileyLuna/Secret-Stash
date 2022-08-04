@@ -1,4 +1,4 @@
-import { put, take, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* fetchRecipe() {
@@ -60,7 +60,7 @@ function* fetchUserRecipe(){
 
 
 
-function* recipeSaga() {
+function* fetchSaga() {
     yield takeEvery('FETCH_RECIPE', fetchRecipe);
     yield takeEvery('FETCH_RECIPE_DETAIL', fetchRecipeDetail);
     yield takeEvery('FETCH_INGREDIENT', fetchIngredient);
@@ -69,4 +69,4 @@ function* recipeSaga() {
     yield takeEvery('FETCH_USER_RECIPE', fetchUserRecipe);
 }
 
-export default recipeSaga;
+export default fetchSaga;

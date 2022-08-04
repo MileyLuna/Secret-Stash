@@ -14,7 +14,7 @@ function Instruction() {
     const dispatch = useDispatch();
 
     const hold = useSelector((store) => store.holdInstructionReducer);
-    console.log(hold);
+    // console.log(hold);
 
     const [step, setStep] = useState('');
     const [text, setText] = useState('');
@@ -73,7 +73,7 @@ function Instruction() {
                 </Stack>
             </form>
 
-
+            <br></br>
             <div>
                 {/* <p>{hold.step} {hold.text}</p> */}
                 {hold.map((item,i) => {
