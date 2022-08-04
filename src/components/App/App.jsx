@@ -22,8 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import RecipeView from '../RecipeView/RecipeView';
 import MyStash from '../MyStash/MyStash';
 import AddRecipe from '../AddRecipe/AddRecipe';
-import Ingredient from '../IngredientForm/IngredientForm';
-import Instruction from '../InstructionForm/InstructionForm';
+import IngredientForm from '../IngredientForm/IngredientForm';
+import InstructionForm from '../InstructionForm/InstructionForm';
 
 
 import './App.css';
@@ -126,11 +126,11 @@ function App() {
         </Route>
 
         <Route path="/ingredient">
-          <Ingredient />
+          <IngredientForm />
         </Route>
 
         <Route path="/intruction">
-          <Instruction />
+          <InstructionForm />
         </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
