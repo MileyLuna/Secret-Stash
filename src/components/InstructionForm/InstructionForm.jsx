@@ -1,46 +1,90 @@
+//MUI
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from 'react';
+
 
 function Instruction() {
 
-    const handleAdd = () => {
+    const dispatch = useDispatch();
+
+    const hold = useSelector((store) => store.holdInstructionReducer);
+    console.log(hold);
+
+    const [step, setStep] = useState('');
+    const [text, setText] = useState('');
+
+    const handleAdd = (event) => {
         console.log('clicked add');
+        event.preventDefault();
         //post update/insert into DB
+        clearInputs();
+        dispatch({
+            type: 'HOLD_INSTRUCTION',
+        payload:{step, text}
+        })
+
+
     }
 
-    return(
+    const clearInputs = () => {
+        setStep('');
+        setText('');
+    }
+
+
+
+
+    return (
         <>
 
-        <form onSubmit={handleAdd}>
-            <Stack direction="row" spacing={3}>
-                <TextField
-                    label="Step #"
-                    id="standard-size-small"
-                    // defaultValue="Small"
-                    size="small"
-                    variant="standard"
-                />
-                <TextField
-                    label="Steps"
-                    id="standard-size-small"
-                    // defaultValue="Small"
-                    size="small"
-                    variant="standard"
-                />
+            <form onSubmit={handleAdd}>
+                <Stack direction="row" spacing={3}>
+                    <TextField
+                        label="Step #"
+                        id="standard-size-small1"
+                        value={step}
+                        onChange={(event) => setStep(event.target.value)}
+                        size="small"
+                        variant="standard"
+                    />
+                    <TextField
+                        label="Step"
+                        id="standard-size-small2"
+                        value={text}
+                        onChange={(event) => setText(event.target.value)}
+                        size="small"
+                        variant="standard"
+                    />
 
-                <Button 
-                variant="contained" 
-                size="small"
-                type='submit'
-                onClick={handleAdd}
-                >
-                    ADD
-                </Button>
+                    <IconButton
+                        aria-label="add"
+                        color="primary"
+                        type='submit'
+                        onClick={handleAdd}>
+                        <AddBoxIcon />
+                    </IconButton>
 
-            </Stack>
-        </form>
+                </Stack>
+            </form>
+
+
+            <div>
+                {/* <p>{hold.step} {hold.text}</p> */}
+                {hold.map((item,i) => {
+                    return(
+                        <p key={i}>{item.step} {item.text} </p>
+
+                    )
+                })}
+            </div>
+
+
         </>
     );
 }

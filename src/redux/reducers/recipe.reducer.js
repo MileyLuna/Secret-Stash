@@ -6,10 +6,13 @@ const recipeReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_RECIPE':
             return action.payload;
-        // case 'SET_USER_RECIPE':
-        //     return action.payload;
-        // case 'SET_RECIPE_DETAIL':
-        //     return 
+        case 'HOLD_RECIPE':
+            return {...state,
+            //then change this one in particular 
+            [action.payload.property]: action.payload.value}
+        // case 'EDIT_RECIPE':
+        //     return {...state,[action.payload.property]: action.payload.value}
+
         default:
             return state;
     }

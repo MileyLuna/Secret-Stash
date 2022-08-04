@@ -26,7 +26,21 @@ router.get('/detail/:id', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+    if (req.isAuthenticated()) {
+    const query = `INSERT INTO "ingredient" ("amount","unit", "ingredient")
+    VALUES ($1, $2, $3) WHERE "recipe_id" = $1;`;
+    pool.query(query)
+        .then(result => {
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all recipe', err);
+            res.sendStatus(500)
+        })
+    }else {
+        res.sendStatus(403);
+    }
+
 });
 
 module.exports = router;
