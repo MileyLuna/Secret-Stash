@@ -7,8 +7,11 @@ import InstructionForm from "../InstructionForm/InstructionForm";
 
 //MUI 
 import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+
 
 //CSS
 import './AddRecipe.css';
@@ -18,14 +21,11 @@ function AddRecipe() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const hold = useSelector((store) => store.hold);
+    //bring store to utilize user id
+    const user = useSelector((store) => store.user);
+    const user_id = user.id;
 
-    // useEffect (() => {
-    //     dispatch({type: 'HOLD_INGREDIENT'})
-    // })
-
-    // const [name, setName] = React.useState('');
-    // const recipes = useSelector((store) => store.recipe.recipeReducer);
+    const [name, setName] = useState('');
 
 
     const handleBack = () => {
@@ -35,65 +35,51 @@ function AddRecipe() {
     }
 
     const handleSave = (event) => {
-        console.log('clicked save');
+        console.log('new recipe:',);
         //post to update the DB
         event.preventDefault();
 
         dispatch({
-            type: 'HOLD_INGREDIENT',
-            payload: { amount, unit, ingredient }
+            type: 'ADD_RECIPE',
+        })
+
+        dispatch({
+            type: 'ADD_INGREDIENT'
+        })
+
+        dispatch({
+            type: 'ADD_INSTRUCTION'
         })
 
 
     }
 
-    // const ingredientEdit = () => {
-    //     console.log('ingredient edit clicked');
-    //     history.push('/ingredient');
-    // }
-
-    // const instructionEdit = () => {
-    //     console.log('instruction edit clicked');
-    //     history.push('/instruction');
-    // }
-
-    // function handleChange(event) {
-    //     dispatch({
-    //         type: 'HOLD_RECIPE',
-    //         payload: {
-    //             property: 'name',
-    //             value: event.target.value
-    //         }
-    //     });
-
-    // }
 
     return (
         <>
-            <input
-                type="text"
-                placeholder="Recipe Name Here"
-            // onChange={(event) => handleChange(event)}
-            // value={recipes.name}
-            />
+
+                    <TextField
+                        label="Recipe Name"
+                        id="recipe-name"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        size="small"
+                        variant="standard"
+                    />
+
+
+                <br></br>
+
 
             <div className="ingredient">
                 <p>Ingredients</p>
-                {/*<Button
-                    variant="outlined"
-                    size="small"
-                    onClick={ingredientEdit}>
-                    EDIT
-                </Button>
-
-                <p>{hold.amount} {hold.unit} {hold.ingredient} </p> */}
 
                 <IngredientForm />
 
             </div>
             <br></br>
             <div className="instruction">
-                <p>Intruction</p>
+                <p>Intructions</p>
                 <InstructionForm />
 
             </div>

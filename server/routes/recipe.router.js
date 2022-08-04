@@ -69,7 +69,20 @@ router.get('/user', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-    // POST route code here
+    const item = req.body;
+
+    const query = `INSERT INTO "recipe" ("title","poster","user_id")
+    VALUES ($1, $2, $3);`;
+
+    pool.query(query, [item.recipe, item.title, item.user_id])
+    .then((result) => {
+        res.sendStatus(201);
+        console.log('POST SERVER:', result.rows);
+    })
+    .catch((err) => {
+        console.log('ERROR in POST SERVER:', err);
+        res.sendStatus(500);
+    })
 });
 
 module.exports = router;
