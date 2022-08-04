@@ -20,8 +20,11 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import RecipeView from '../RecipeView/RecipeView';
-import MyStash from '../../MyStash/MyStash';
+import MyStash from '../MyStash/MyStash';
 import AddRecipe from '../AddRecipe/AddRecipe';
+import Ingredient from '../IngredientForm/IngredientForm';
+import Instruction from '../InstructionForm/InstructionForm';
+
 
 import './App.css';
 
@@ -113,6 +116,23 @@ function App() {
             }
           </Route>
 
+{/* new routes */}
+        <Route path="/view/:id">
+          <RecipeView />
+        </Route>
+
+        <Route path="/new">
+          <AddRecipe />
+        </Route>
+
+        <Route path="/ingredient">
+          <Ingredient />
+        </Route>
+
+        <Route path="/intruction">
+          <Instruction />
+        </Route>
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
@@ -120,14 +140,6 @@ function App() {
         </Switch>
 
 
-        <Route path="/view/:id">
-          <RecipeView />
-        </Route>
-
-
-        <Route path="/new">
-          <AddRecipe />
-        </Route>
 
 
 

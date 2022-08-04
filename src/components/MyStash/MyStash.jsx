@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // import MyStashItem from '../components/MyStashItem/MyStashItem';
-
 //MUI
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,7 +14,7 @@ import Paper from '@mui/material/Paper';
 
 function MyStash() {
 
-        const Item = styled(Paper)(({ theme }) => ({
+    const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
         padding: theme.spacing(1),
@@ -27,13 +26,13 @@ function MyStash() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const recipes = useSelector((store) => store.recipe);
+    const recipes = useSelector((store) => store.recipe.recipeReducer);
 
     useEffect(() => {
-        dispatch({ type: 'USER_RECIPE' })
+        dispatch({ type: 'FETCH_USER_RECIPE' })
     }, []);
 
-    const handleClick = () => {
+    const addNewClick = () => {
         console.log('click add recipe');
         history.push('/new');
     }
@@ -41,26 +40,28 @@ function MyStash() {
     return (
 
         <Box sx={{ flexGrow: 1 }}>
-            <Grid item xs onClick={handleClick}>
+            {/* action box to change view to add a new recipe */}
+            <Grid item xs onClick={addNewClick}>
                 <Item>
                     <p>ADD A RECIPE</p>
                 </Item>
             </Grid>
+
+            {/* show all recipe by user */}
             <Grid container spacing={3}>
-                <Item>
-                    <p>{recipes.title}</p>
-                    <img src={recipes.poster} />
-
-                </Item>
-
-            </Grid>
-            {/* <Grid container spacing={3}>
                 {recipes.map((recipe) => {
                     return (
-                        <MyStashItem key={recipe.id} recipe={recipe} />
+                        <Grid item xs key={recipe.id}>
+                            <Item>
+                                <p>{recipe.title}</p>
+                                <img src={recipe.poster} />
+                            </Item>
+
+                        </Grid>
+                        // <MyStashItem key={recipe.id} recipe={recipe} />
                     )
                 })}
-            </Grid> */}
+            </Grid>
         </Box>
     );
 }

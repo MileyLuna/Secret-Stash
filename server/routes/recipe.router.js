@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
 });
 
 
-
 //GET selected recipe information
 router.get('/detail/:id', (req, res) => {
     if (req.isAuthenticated()) {
@@ -45,10 +44,13 @@ router.get('/detail/:id', (req, res) => {
 
 //GET user recipe information
 router.get('/user', (req, res) => {
-    if (req.isAuthenticated()) {
 
+    if (req.isAuthenticated()) {
+    
+    const id = req.user.user;
     const query = `SELECT * FROM "recipe" WHERE "user_id" = $1;`;
-    pool.query(query,[req.user.user_id])
+    
+    pool.query(query,[id])
         .then(result => {
             res.send(result.rows);
         })

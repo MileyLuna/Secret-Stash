@@ -11,10 +11,10 @@ function RecipeView() {
     console.log('this recipe_id is:', id);
 
     //Bring over stores to map out all of selected recipe information
-    const recipes = useSelector((store) => store.recipe);
-    const ingredients = useSelector((store) => store.ingredient);
-    const instructions = useSelector((store) => store.instruction);
-
+    const ingredients = useSelector((store) => store.recipe.ingredientReducer);
+    const instructions = useSelector((store) => store.recipe.instructionReducer);
+    const details = useSelector((store) => store.recipe.detailReducer);
+    
     useEffect(() => {
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id});
         dispatch({ type: 'FETCH_INGREDIENT', payload: id});
@@ -31,8 +31,8 @@ function RecipeView() {
 
     return (
         <div>
-            <h1>{recipes[0].title}</h1>
-            <img src={recipes[0].poster}/>
+            <h1>{details[0]?.title}</h1>
+            <img src={details[0]?.poster}/>
 
         {ingredients.map((ing) => {
             return(
