@@ -12,7 +12,7 @@ router.get('/detail/:id', (req, res) => {
                 res.send(result.rows);
             })
             .catch(err => {
-                console.log('ERROR: Get user recipe', err);
+                console.log('ERROR: Get selected ingredient', err);
                 res.sendStatus(500)
             })
     } else {
@@ -25,22 +25,22 @@ router.get('/detail/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+// router.post('/', (req, res) => {
 
-    const item = req.body;
+//     const item = req.body;
 
-    const query = `INSERT INTO "ingredient" ("amount","unit", "ingredient")
-    VALUES ($1, $2, $3) WHERE "recipe_id" = $1;`;
-    pool.query(query, [item.amount, item.unit, item.ingredient])
-        .then(result => {
-            res.send(result.rows);
-        })
-        .catch(err => {
-            console.log('ERROR: Get all recipe', err);
-            res.sendStatus(500)
-        })
+//     const query = `INSERT INTO "ingredient" ("amount","unit", "ingredient")
+//     VALUES ($1, $2, $3) WHERE "recipe_id" = $1;`;
+//     pool.query(query, [item.amount, item.unit, item.ingredient])
+//         .then(result => {
+//             res.send(result.rows);
+//         })
+//         .catch(err => {
+//             console.log('ERROR: POST all recipe', err);
+//             res.sendStatus(500)
+//         })
 
-});
+// });
 
 router.delete('/delete/:id', (req, res) => {
     if (req.isAuthenticated()) {
@@ -52,7 +52,7 @@ router.delete('/delete/:id', (req, res) => {
                 res.send(result.rows);
             })
             .catch(err => {
-                console.log('ERROR: Get selected recipe', err);
+                console.log('ERROR: Delete selected recipe', err);
                 res.sendStatus(500)
             })
     } else {
