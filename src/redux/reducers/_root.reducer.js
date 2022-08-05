@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   recipe,
   holdInstructionReducer,
   holdIngredientReducer,
-  holdRecipeNameReducer
+  holdRecipeNameReducer,
 
 
 

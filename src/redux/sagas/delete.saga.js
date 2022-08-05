@@ -7,7 +7,7 @@ function* deleteRecipe(action) {
 
         const earseRecipe = yield axios.delete(`/api/recipe/delete/${action.payload}`);
         console.log('fetch RECIPE DETAIL:', earseRecipe.data);
-        yield put({ type: 'CLEAR_ALL', payload: earseRecipe.data });
+        yield put({ type: 'SET_RECIPE' });
     } catch (error) {
         console.log('ERROR in delete:', error);
     }
@@ -19,7 +19,7 @@ function* deleteInstruction(action) {
 
         const earseInstruction = yield axios.delete(`/api/ins/delete/${action.payload}`);
         console.log('fetch RECIPE DETAIL:', earseInstruction.data);
-        yield put({ type: 'CLEAR_ALL', payload: earseInstruction.data });
+        // yield put({ type: 'CLEAR_ALL'});
     } catch (error) {
         console.log('ERROR in delete:', error);
     }
@@ -31,7 +31,7 @@ function* deleteIngredient(action) {
 
         const earseIngredient = yield axios.delete(`/api/ing/delete/${action.payload}`);
         console.log('fetch RECIPE DETAIL:', earseIngredient.data);
-        yield put({ type: 'CLEAR_ALL', payload: earseIngredient.data });
+        // yield put({ type: 'CLEAR_ALL'});
     } catch (error) {
         console.log('ERROR in delete:', error);
     }

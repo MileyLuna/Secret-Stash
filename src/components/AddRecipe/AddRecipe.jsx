@@ -28,7 +28,7 @@ function AddRecipe() {
     //bring in store that's holding new input
     const ingredient = useSelector((store) => store.holdIngredientReducer);
     const instruction = useSelector((store) => store.holdInstructionReducer);
-    const recipe = useSelector((store) => store.recipe.holdRecipeNameReducer);
+    const recipe = useSelector((store) => store.holdRecipeNameReducer);
 
 
     const [name, setName] = useState('');
@@ -36,27 +36,30 @@ function AddRecipe() {
 
     const handleBack = () => {
         console.log('clicked back');
+        //takes back to My Stash view
         history.push('/stash');
 
     }
 
     const handleSave = (event) => {
-        //post to update the DB
+        //prevent refresh
         event.preventDefault();
 
+        //Send new recipe name to be held in reducer until being recall
         dispatch({
             type: 'HOLD_NAME',
-            payload: {name}
-        })
+            payload: name
+        });
+        //send and add new recipe to database
+
+console.log('this is recipe title:', name);
+        
         dispatch({
             type: 'ADD_RECIPE',
             payload: {
-                amount: ingredient.amount,
-                unit: ingredient.unit,
-                ingredient: ingredient.ingredient,
-                step: instruction.step_num,
-                text: instruction.text,
-                name: recipe.title,
+                instruction: instruction,
+                ingredient: ingredient,
+                title: recipe
 
             }
         })
