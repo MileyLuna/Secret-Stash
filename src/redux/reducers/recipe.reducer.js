@@ -6,10 +6,12 @@ const recipeReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_RECIPE':
             return action.payload;
-        case 'HOLD_RECIPE':
-            return {...state,
-            //then change this one in particular 
-            [action.payload.property]: action.payload.value}
+        case 'CLEAR_ALL':
+            return [];
+        // case 'HOLD_RECIPE':
+        //     return {...state,
+        //     //then change this one in particular 
+        //     [action.payload.property]: action.payload.value}
         // case 'EDIT_RECIPE':
         //     return {...state,[action.payload.property]: action.payload.value}
 
@@ -31,6 +33,8 @@ const ingredientReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_INGREDIENT':
             return action.payload;
+        case 'CLEAR_ALL':
+            return [];
         default:
             return state;
     }
@@ -40,6 +44,8 @@ const instructionReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_INSTRUCTION':
             return action.payload;
+        case 'CLEAR_ALL':
+            return [];
         default:
             return state;
     }

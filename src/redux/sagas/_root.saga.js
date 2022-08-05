@@ -3,10 +3,8 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 
-//all GET saga
+import deleteSaga from './delete.saga';
 import fetchSaga from './recipe.saga';
-
-//post saga
 import postSaga from './post.saga';
 
 // rootSaga is the primary saga.
@@ -23,6 +21,7 @@ export default function* rootSaga() {
     userSaga(),
     fetchSaga(),
     postSaga(),
+    deleteSaga(),
     
   ]);
 }

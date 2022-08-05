@@ -42,15 +42,16 @@ router.get('/detail/:id', (req, res) => {
 
 });
 
+const {rejectUnauthenticated} = require('../modules/authentication-middleware');
+
 //GET user recipe information
-router.get('/user', (req, res) => {
+router.get('/user', rejectUnauthenticated, (req, res) => {
 
     if (req.isAuthenticated()) {
     
-    const id = req.user.user;
-    const query = `SELECT * FROM "recipe" WHERE "user_id" = $1;`;
+    const query = `SELECT * FROM "recipe" WHERE "user_id" = ${req.user.user_id};`;
     
-    pool.query(query,[id])
+    pool.query(query)
         .then(result => {
             res.send(result.rows);
         })
@@ -71,10 +72,10 @@ router.get('/user', (req, res) => {
 router.post('/', (req, res) => {
     const item = req.body;
 
-    const query = `INSERT INTO "recipe" ("title","poster","user_id")
-    VALUES ($1, $2, $3);`;
+    const query = `INSERT INTO "recipe" ("title","user_id")
+    VALUES ($1, $2);`;
 
-    pool.query(query, [item.recipe, item.title, item.user_id])
+    pool.query(query, [item.title, item.user_id])
     .then((result) => {
         res.sendStatus(201);
         console.log('POST SERVER:', result.rows);
