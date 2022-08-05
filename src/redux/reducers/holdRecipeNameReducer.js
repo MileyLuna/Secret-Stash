@@ -1,7 +1,7 @@
-const holdRecipeNameReducer = (state = [], action) => {
+const holdRecipeNameReducer = (state = '', action) => {
     switch (action.type) {
         case 'HOLD_NAME':
-            return [...state, action.payload];
+            return action.payload;
         default:
             return state;
     }

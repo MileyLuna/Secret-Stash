@@ -35,7 +35,7 @@ function MyStashDetail() {
         dispatch({ type: 'DELETE_RECIPE', payload: id})
         dispatch({ type: 'DELETE_INSTRUCTION', payload: id})
         dispatch({ type: 'DELETE_INGREDIENT', payload: id})
-
+        history.push('/stash');
         
     }
 

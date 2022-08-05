@@ -52,7 +52,7 @@ router.delete('/delete/:id', (req, res) => {
                 res.send(result.rows);
             })
             .catch(err => {
-                console.log('ERROR: Delete selected recipe', err);
+                console.log('ERROR: Delete selected ingredient', err);
                 res.sendStatus(500)
             })
     } else {

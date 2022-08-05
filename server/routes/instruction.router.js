@@ -39,7 +39,7 @@ router.delete('/delete/:id', (req, res) => {
                 res.send(result.rows);
             })
             .catch(err => {
-                console.log('ERROR: delete selected recipe', err);
+                console.log('ERROR: delete selected instruction', err);
                 res.sendStatus(500)
             })
     } else {

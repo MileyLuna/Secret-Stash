@@ -70,9 +70,15 @@ router.get('/user', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-
+    let createdRecipeId;
     const id = req.user.id;
     console.log('user id is:', id);
+    console.log('this is name:', req.body.title);
+    console.log('this is step_num:', req.body.step_num);
+    console.log('this is text:', req.body.text);
+    console.log('this is amount:', req.body.amout);
+    console.log('this is unit:', req.body.unit);
+    console.log('this is ingredient:', req.body.ingredient);
 
     // RETURNING "id" will give us back the id of the created movie
     const insertRecipe = `INSERT INTO "recipe" ("title", "user_id")
@@ -84,11 +90,11 @@ router.post('/', (req, res) => {
         .then(result => {
             console.log('New recipe Id:', result.rows[0].id); //ID IS HERE!
 
-            const createdRecipeId = result.rows[0].id
-
+            createdRecipeId = result.rows[0].id
+//! do a for loop over req.body.instruction for each instruction over list, run the inse
             // Now handle the instruction reference
             const insertInstruction = `
-        INSERT INTO "intruction" ("step_num", "text", "recipe_id")
+        INSERT INTO "instruction" ("step_num", "text", "recipe_id")
         VALUES  ($1, $2, $3);
         `
             // SECOND QUERY ADDS instruction
@@ -97,7 +103,7 @@ router.post('/', (req, res) => {
                     // Now handle the ingredient reference
                     const insertIngredient = `
                     INSERT INTO "ingredient" ("amount", "unit", "ingredient","recipe_id")
-                    VALUES ($1,$2,$3);`;
+                    VALUES ($1,$2,$3, $4);`;
 
                     // THRID QUERY ADDS instruction
                     pool.query(insertIngredient, [req.body.amount, req.body.unit, req.body.ingredient, createdRecipeId])
@@ -130,7 +136,7 @@ router.delete('/delete/:id', (req, res) => {
     if (req.isAuthenticated()) {
         const id = req.params.id;
 
-        const query = `DELETE * FROM "recipe" WHERE "recipe_id" = $1;`;
+        const query = `DELETE FROM "recipe" WHERE "id" = $1;`;
         pool.query(query, [id])
             .then(result => {
                 res.send(result.rows);

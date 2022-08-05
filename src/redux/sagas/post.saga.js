@@ -2,11 +2,11 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-
-
+//will take new recipe to server to add into DB
+//when saga comes back, refresh and update DOM 
 function* addRecipe(action) {
     try {
-        const item = yield axios.post('/api/recipe', action.payload);
+        yield axios.post('/api/recipe', action.payload);
         yield put({ type: 'FETCH_ITEM' });
     } catch (error) {
         console.log('ERR with POST addRecipe:', error);
