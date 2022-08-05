@@ -5,6 +5,7 @@ import recipe from './recipe.reducer';
 import holdIngredientReducer from './holdIngredient.reducer';
 import holdInstructionReducer from './holderInstruction.reducer';
 holdInstructionReducer
+import holdRecipeNameReducer from './holdRecipeNameReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -18,7 +19,9 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   recipe,
   holdInstructionReducer,
-  holdIngredientReducer
+  holdIngredientReducer,
+  holdRecipeNameReducer
+
 
 
 

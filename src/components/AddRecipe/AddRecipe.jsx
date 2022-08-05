@@ -22,12 +22,13 @@ function AddRecipe() {
     const dispatch = useDispatch();
 
     //bring store to utilize user id
-    const user = useSelector((store) => store.user);
-    const user_id = user.id;
+    // const user = useSelector((store) => store.user);
+    // const user_id = user.id;
 
     //bring in store that's holding new input
     const ingredient = useSelector((store) => store.holdIngredientReducer);
     const instruction = useSelector((store) => store.holdInstructionReducer);
+    const recipe = useSelector((store) => store.recipe.holdRecipeNameReducer);
 
 
     const [name, setName] = useState('');
@@ -40,29 +41,23 @@ function AddRecipe() {
     }
 
     const handleSave = (event) => {
-        console.log('new recipe:',);
         //post to update the DB
         event.preventDefault();
 
         dispatch({
-            type: 'ADD_RECIPE',
-            payload: {name, user_id}
+            type: 'HOLD_NAME',
+            payload: {name}
         })
-
         dispatch({
-            type: 'ADD_INGREDIENT',
+            type: 'ADD_RECIPE',
             payload: {
-                iAmount: ingredient.amount,
-                iUnit: ingredient.unit,
-                iIngredient: ingredient.ingredient
-            }
-        });
+                amount: ingredient.amount,
+                unit: ingredient.unit,
+                ingredient: ingredient.ingredient,
+                step: instruction.step_num,
+                text: instruction.text,
+                name: recipe.title,
 
-        dispatch({
-            type: 'ADD_INSTRUCTION',
-            payload: {
-                iStep: instruction.step_num,
-                iText: instruction.text
             }
         })
 
