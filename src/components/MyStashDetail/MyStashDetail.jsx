@@ -32,6 +32,9 @@ function MyStashDetail() {
 
     const handleDelete =()=>{
         dispatch({ type: 'DELETE_RECIPE', payload: id})
+        dispatch({ type: 'DELETE_INSTRUCTION', payload: id})
+        dispatch({ type: 'DELETE_INGREDIENT', payload: id})
+
         
     }
 
