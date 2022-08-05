@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import MyStashItem from '../components/MyStashItem/MyStashItem';
+import MyStashItem from '../MyStashItem/MyStashItem';
+
 //MUI
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -14,6 +15,7 @@ import Paper from '@mui/material/Paper';
 
 function MyStash() {
 
+    //MUI STYLING
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
@@ -30,7 +32,7 @@ function MyStash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_RECIPE' })
-    }, []);
+    }, [dispatch]);
 
     const addNewClick = () => {
         console.log('click add recipe');
@@ -41,24 +43,18 @@ function MyStash() {
 
         <Box sx={{ flexGrow: 1 }}>
             {/* action box to change view to add a new recipe */}
+            <Grid container spacing={3}>
+            
             <Grid item xs onClick={addNewClick}>
                 <Item>
                     <p>ADD A RECIPE</p>
                 </Item>
             </Grid>
-
+<br></br>
             {/* show all recipe by user */}
-            <Grid container spacing={3}>
-                {recipes.map((recipe) => {
+                {recipes.map((recipe, i) => {
                     return (
-                        <Grid item xs key={recipe.id}>
-                            <Item>
-                                <p>{recipe.title}</p>
-                                <img src={recipe.poster} />
-                            </Item>
-
-                        </Grid>
-                        // <MyStashItem key={recipe.id} recipe={recipe} />
+                        <MyStashItem key={i} recipe={recipe}/>
                     )
                 })}
             </Grid>
