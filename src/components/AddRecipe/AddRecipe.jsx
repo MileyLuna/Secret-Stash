@@ -25,6 +25,11 @@ function AddRecipe() {
     const user = useSelector((store) => store.user);
     const user_id = user.id;
 
+    //bring in store that's holding new input
+    const ingredient = useSelector((store) => store.holdIngredientReducer);
+    const instruction = useSelector((store) => store.holdInstructionReducer);
+
+
     const [name, setName] = useState('');
 
 
@@ -41,14 +46,24 @@ function AddRecipe() {
 
         dispatch({
             type: 'ADD_RECIPE',
+            payload: {name, user_id}
         })
 
         dispatch({
-            type: 'ADD_INGREDIENT'
-        })
+            type: 'ADD_INGREDIENT',
+            payload: {
+                iAmount: ingredient.amount,
+                iUnit: ingredient.unit,
+                iIngredient: ingredient.ingredient
+            }
+        });
 
         dispatch({
-            type: 'ADD_INSTRUCTION'
+            type: 'ADD_INSTRUCTION',
+            payload: {
+                iStep: instruction.step_num,
+                iText: instruction.text
+            }
         })
 
 
@@ -58,17 +73,17 @@ function AddRecipe() {
     return (
         <>
 
-                    <TextField
-                        label="Recipe Name"
-                        id="recipe-name"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                        size="small"
-                        variant="standard"
-                    />
+            <TextField
+                label="Recipe Name"
+                id="recipe-name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                size="small"
+                variant="standard"
+            />
 
 
-                <br></br>
+            <br></br>
 
 
             <div className="ingredient">

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 
-function RecipeView() {
+function UserPageDetail() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
@@ -57,4 +57,4 @@ function RecipeView() {
     )
 }
 
-export default RecipeView;
+export default UserPageDetail;
