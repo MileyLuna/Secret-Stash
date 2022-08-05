@@ -15,9 +15,10 @@ function MyStashDetail() {
     const { id } = useParams();
     console.log('this recipe_id is:', id);
 
-    const recipes = useSelector((store) => store.recipe.recipeReducer);
+    // const recipes = useSelector((store) => store.recipe.recipeReducer);
     const ingredients = useSelector((store) => store.recipe.ingredientReducer);
     const instructions = useSelector((store) => store.recipe.instructionReducer);
+    const details = useSelector((store) => store.recipe.detailReducer);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id});
@@ -41,7 +42,27 @@ function MyStashDetail() {
 
     return(
         <>
-        <h1></h1>
+        <h1>{details[0]?.title}</h1>
+            <img src={details[0]?.poster}/>
+<br></br>
+<h3>INGREDIENT</h3>
+        {ingredients.map((ing) => {
+            return(
+                <div key={ing.id}>
+                    <p>{ing.amount} {ing.unit} {ing.ingredient}</p>
+                </div>
+            )
+        })}
+        <br></br>
+<h3>INSTRUCTION</h3>
+        {instructions.map((ins)=> {
+            return(
+                <div key={ins.id}> 
+                <p>{ins.step_num}. {ins.text}</p>
+                </div>
+            
+            )
+        })}
 
         <Stack direction="row" spacing={3}>
                 <Button

@@ -34,6 +34,8 @@ function UserPageDetail() {
             <h1>{details[0]?.title}</h1>
             <img src={details[0]?.poster}/>
 
+            <br></br>
+<h3>INGREDIENT</h3>
         {ingredients.map((ing) => {
             return(
                 <div key={ing.id}>
@@ -41,7 +43,8 @@ function UserPageDetail() {
                 </div>
             )
         })}
-
+        <br></br>
+<h3>INSTRUCTION</h3>
         {instructions.map((ins)=> {
             return(
                 <div key={ins.id}> 

@@ -25,6 +25,7 @@ import AddRecipe from '../AddRecipe/AddRecipe';
 import IngredientForm from '../IngredientForm/IngredientForm';
 import InstructionForm from '../InstructionForm/InstructionForm';
 import MyStashDetail from '../MyStashDetail/MyStashDetail';
+import MyStashItem from '../MyStashItem/MyStashItem';
 
 import './App.css';
 
@@ -133,7 +134,11 @@ function App() {
             <InstructionForm />
           </Route>
 
-          <Route path="/stashdetail">
+          <Route path="/stashitem">
+            <MyStashItem />
+          </Route>
+
+          <Route path="/stashdetail/:id">
             <MyStashDetail />
           </Route>
 

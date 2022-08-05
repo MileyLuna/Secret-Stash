@@ -48,9 +48,13 @@ function* fetchInstruction(action) {
     }
 }
 
-function* fetchUserRecipe(){
-    try{
-        const response = yield axios.get('/api/recipe/user');
+function* fetchUserRecipe() {
+    try {
+        const config = {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+        };
+        const response = yield axios.get('/api/recipe/user', config);
         yield put({ type: 'SET_RECIPE', payload: response.data });
     }
     catch (error) {
