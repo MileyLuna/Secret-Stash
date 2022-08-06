@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
@@ -31,6 +32,10 @@ function Ingredient() {
         payload: {amount, unit, ingredient} 
         })
 
+
+    }
+
+    const handleDelete = () => {
 
     }
 
@@ -87,32 +92,22 @@ function Ingredient() {
             <div className='text'>
                 {holds.map((hold, i)=> {
                     return(
-                        <p key={i}> {hold.amount} {hold.unit} {hold.ingredient} </p>
+                        <div key={i}>
+                        <p> {hold.amount} {hold.unit} {hold.ingredient} </p>
+                        <IconButton
+                        aria-label="add"
+                        color="error"
+                        type='submit'
+                        onClick={handleDelete}>
+                        <RemoveIcon />
+                    </IconButton>
+
+                        </div>
+
 
                     )
                 })}
             </div>
-
-
-
-
-            {/* <br></br>
-            <Stack direction="row" spacing={3}>
-                <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={handleBack}>
-                    BACK
-                </Button>
-
-                <Button
-                    variant="contained"
-                    color="success"
-                    size="small"
-                    onClick={handleSave}>
-                    SAVE
-                </Button>
-            </Stack> */}
 
 
         </>

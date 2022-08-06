@@ -131,7 +131,7 @@ router.post('/', (req, res) => {
 
 
 
-
+//delete everything related to recipe id
 router.delete('/delete/:id', (req, res) => {
     if (req.isAuthenticated()) {
         const id = req.params.id;

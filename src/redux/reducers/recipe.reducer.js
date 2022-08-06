@@ -8,12 +8,6 @@ const recipeReducer = (state = [], action) => {
             return action.payload;
         case 'CLEAR_ALL':
             return [];
-        // case 'HOLD_RECIPE':
-        //     return {...state,
-        //     //then change this one in particular 
-        //     [action.payload.property]: action.payload.value}
-        // case 'EDIT_RECIPE':
-        //     return {...state,[action.payload.property]: action.payload.value}
 
         default:
             return state;

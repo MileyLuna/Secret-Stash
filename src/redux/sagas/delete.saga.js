@@ -13,38 +13,12 @@ function* deleteRecipe(action) {
     }
 }
 
-function* deleteInstruction(action) {
-    try {
-        // passes the username and password from the payload to the server
 
-        const earseInstruction = yield axios.delete(`/api/ins/delete/${action.payload}`);
-        console.log('fetch RECIPE DETAIL:', earseInstruction.data);
-        // yield put({ type: 'CLEAR_ALL'});
-    } catch (error) {
-        console.log('ERROR in delete:', error);
-    }
-}
-
-function* deleteIngredient(action) {
-    try {
-        // passes the username and password from the payload to the server
-
-        const earseIngredient = yield axios.delete(`/api/ing/delete/${action.payload}`);
-        console.log('fetch RECIPE DETAIL:', earseIngredient.data);
-        // yield put({ type: 'CLEAR_ALL'});
-    } catch (error) {
-        console.log('ERROR in delete:', error);
-    }
-}
 
 
 
 function* deleteSaga() {
     yield takeEvery('DELETE_RECIPE', deleteRecipe);
-    yield takeEvery('DELETE_INGREDIENT', deleteIngredient);
-    yield takeEvery('DELETE_INSTRUCTION', deleteInstruction);
-
-
 
 }
 export default deleteSaga;

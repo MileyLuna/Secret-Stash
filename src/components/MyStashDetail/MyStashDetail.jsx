@@ -7,6 +7,8 @@ import { useHistory, useParams } from "react-router-dom";
 //MUI
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 function MyStashDetail() {
@@ -21,50 +23,49 @@ function MyStashDetail() {
     const details = useSelector((store) => store.recipe.detailReducer);
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id});
-        dispatch({ type: 'FETCH_INGREDIENT', payload: id});
-        dispatch({ type: 'FETCH_INSTRUCTION', payload: id});
-    },[])
+        dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
 
-    const handleBack =()=>{
+    }, [])
+
+    const handleBack = () => {
         history.push('/stash');
 
     }
 
-    const handleDelete =()=>{
-        dispatch({ type: 'DELETE_RECIPE', payload: id})
-        dispatch({ type: 'DELETE_INSTRUCTION', payload: id})
-        dispatch({ type: 'DELETE_INGREDIENT', payload: id})
+    const handleDelete = () => {
+        dispatch({ type: 'DELETE_RECIPE', payload: id })
+        dispatch({ type: 'DELETE_INSTRUCTION', payload: id })
+        dispatch({ type: 'DELETE_INGREDIENT', payload: id })
         history.push('/stash');
-        
+
     }
 
 
-    return(
+    return (
         <>
-        <h1>{details[0]?.title}</h1>
-            <img src={details[0]?.poster}/>
-<br></br>
-<h3>INGREDIENT</h3>
-        {ingredients.map((ing) => {
-            return(
-                <div key={ing.id}>
-                    <p>{ing.amount} {ing.unit} {ing.ingredient}</p>
-                </div>
-            )
-        })}
-        <br></br>
-<h3>INSTRUCTION</h3>
-        {instructions.map((ins)=> {
-            return(
-                <div key={ins.id}> 
-                <p>{ins.step_num}. {ins.text}</p>
-                </div>
-            
-            )
-        })}
+            <h1>{details[0]?.title}</h1>
+            <img src={details[0]?.poster} />
+            <br></br>
+            <h3>INGREDIENT</h3>
+            {ingredients.map((ing) => {
+                return (
+                    <div key={ing.id}>
+                        <p>{ing.amount} {ing.unit} {ing.ingredient}</p>
+                    </div>
+                )
+            })}
+            <br></br>
+            <h3>INSTRUCTION</h3>
+            {instructions.map((ins) => {
+                return (
+                    <div key={ins.id}>
+                        <p>{ins.step_num}. {ins.text}</p>
+                    </div>
 
-        <Stack direction="row" spacing={3}>
+                )
+            })}
+
+            <Stack direction="row" spacing={3}>
                 <Button
                     variant="outlined"
                     size="small"
@@ -72,13 +73,24 @@ function MyStashDetail() {
                     BACK
                 </Button>
 
-                <Button
+                {/* <Button
                     variant="contained"
                     color="error"
                     size="small"
                     onClick={handleDelete}>
                     DELETE
+                </Button> */}
+
+                <Button 
+                variant="contained" 
+                onClick={handleDelete} 
+                color="error"
+                startIcon={<DeleteIcon />}>
+                    Delete
                 </Button>
+
+
+
             </Stack>
 
 
