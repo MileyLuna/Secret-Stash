@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import RemoveIcon from '@mui/icons-material/Remove';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
@@ -36,6 +37,10 @@ function Ingredient() {
     }
 
     const handleDelete = () => {
+
+    }
+
+    const handleEdit = () => {
 
     }
 
@@ -94,13 +99,23 @@ function Ingredient() {
                     return(
                         <div key={i}>
                         <p> {hold.amount} {hold.unit} {hold.ingredient} </p>
+
                         <IconButton
-                        aria-label="add"
+                        aria-label="edit"
                         color="error"
-                        type='submit'
+                        size="small"
+                        onClick={handleEdit}>
+                        <EditOutlinedIcon  />
+                    </IconButton>
+                    
+                        <IconButton
+                        aria-label="delete"
+                        color="error"
+                        size="small"
                         onClick={handleDelete}>
                         <RemoveIcon />
                     </IconButton>
+
 
                         </div>
 

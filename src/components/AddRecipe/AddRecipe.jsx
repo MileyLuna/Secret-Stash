@@ -36,6 +36,11 @@ function AddRecipe() {
 
     const handleBack = () => {
         console.log('clicked back');
+        //clear all in holder reducers
+        dispatch({ type: 'CLEAR_NAME'});
+        dispatch({ type: 'CLEAR_INGREDIENT'});
+        dispatch({type: 'CLEAR_INSTRUCTION'});
+        
         //takes back to My Stash view
         history.push('/stash');
 

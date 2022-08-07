@@ -4,6 +4,9 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import RemoveIcon from '@mui/icons-material/Remove';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
@@ -75,11 +78,28 @@ function Instruction() {
 
             <br></br>
             <div>
-                {/* <p>{hold.step} {hold.text}</p> */}
                 {hold.map((item,i) => {
                     return(
-                        <p key={i}>{item.step} {item.text} </p>
+                        <div key={i}>
 
+                        <p >{item.step} {item.text} </p>
+
+                        <IconButton
+                        aria-label="edit"
+                        color="error"
+                        size="small"
+                        >
+                        <EditOutlinedIcon  />
+                    </IconButton>
+                    
+                        <IconButton
+                        aria-label="delete"
+                        color="error"
+                        size="small"
+                        >
+                        <RemoveIcon />
+                    </IconButton>
+                        </div>
                     )
                 })}
             </div>

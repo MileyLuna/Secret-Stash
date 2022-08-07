@@ -2,7 +2,9 @@ const holdIngredientReducer = (state = [], action) => {
     switch (action.type) {
         case 'HOLD_INGREDIENT':
             return [...state, action.payload];
-        default:
+        case 'CLEAR_INGREDIENT':
+            return []
+            default:
             return state;
     }
 };
