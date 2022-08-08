@@ -72,6 +72,7 @@ router.get('/user', (req, res) => {
 router.post('/', (req, res) => {
     let createdRecipeId;
     const id = req.user.id;
+    console.log('what is this:', req.body);
     console.log('user id is:', id);
     console.log('this is name:', req.body.title);
     console.log('this is step_num:', req.body.step_num);
@@ -91,42 +92,47 @@ router.post('/', (req, res) => {
             console.log('New recipe Id:', result.rows[0].id); //ID IS HERE!
 
             createdRecipeId = result.rows[0].id
-//! do a for loop over req.body.instruction for each instruction over list, run the inse
-            // Now handle the instruction reference
+            //! do a for loop over req.body.instruction for each instruction over list, run the inse
+
+            const instruction = req.body.instruction;
             const insertInstruction = `
         INSERT INTO "instruction" ("step_num", "text", "recipe_id")
         VALUES  ($1, $2, $3);
         `
-            // SECOND QUERY ADDS instruction
-            pool.query(insertInstruction, [req.body.step_num, req.body.text, createdRecipeId])
-                .then(result => {
-                    // Now handle the ingredient reference
-                    const insertIngredient = `
+            for (let i = 0; i < instruction.length; i++) {
+                pool.query(insertInstruction, [instruction[i].step, instruction[i].text, createdRecipeId])
+                    .then(result => {
+                        // console.log(result)
+                    }).catch(err => {
+                        console.log('intruction INSERT:', err);
+                        res.sendStatus(500)
+                    })
+            }
+
+
+            // Now handle the ingredient reference
+            const insertIngredient = `
                     INSERT INTO "ingredient" ("amount", "unit", "ingredient","recipe_id")
                     VALUES ($1,$2,$3, $4);`;
 
-                    // THRID QUERY ADDS instruction
-                    pool.query(insertIngredient, [req.body.amount, req.body.unit, req.body.ingredient, createdRecipeId])
-                        .then(result => {
-                            //Now that all three are done, send back success!
-                            res.sendStatus(201);
+            const ingredient = req.body.ingredient;
 
-                        }).catch(err => {
-                            // catch for second query
-                            console.log('POST server 3rd query:', err);
-                            res.sendStatus(500)
-                        })
-                }).catch(err => {
-                    // catch for second query
-                    console.log('POST server 2nd query:', err);
-                    res.sendStatus(500)
-                })
-            // Catch for first query
-        }).catch('POST server 1st query:', err => {
-            console.log(err);
-            res.sendStatus(500)
+            for (let i = 0; i < ingredient.length; i++) {
+                pool.query(insertIngredient, [ingredient[i].amount, ingredient[i].unit, ingredient[i].ingredient, createdRecipeId])
+                    .then(result => {
+                        // console.log(result)
+                    }).catch(err => {
+                        console.log('ingredient INSERT:', err);
+                        res.sendStatus(500)
+                    })
+            }
+            //     // Catch for first query
+            }).catch('POST server 1st query:', err => {
+                console.log(err);
+                res.sendStatus(500)
+            })
         })
-})
+
 
 
 
