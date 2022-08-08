@@ -28,7 +28,6 @@ function AddRecipe() {
     //bring in store that's holding new input
     const ingredient = useSelector((store) => store.holdIngredientReducer);
     const instruction = useSelector((store) => store.holdInstructionReducer);
-    const recipe = useSelector((store) => store.holdRecipeNameReducer);
 
 
     const [name, setName] = useState('');
@@ -64,7 +63,7 @@ console.log('this is recipe title:', name);
             payload: {
                 instruction: instruction,
                 ingredient: ingredient,
-                title: recipe
+                title: name
 
             }
         })
