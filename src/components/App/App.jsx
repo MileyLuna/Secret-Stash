@@ -145,7 +145,7 @@ function App() {
             <MyStashDetail />
           </Route>
 
-          <Route path="/stashedit/:id">
+          <Route path="/stashedit">
             <MyStashEdit />
           </Route>
 
