@@ -28,7 +28,14 @@ function MyStashDetail() {
     }, [])
 
     const handleBack = () => {
+        //brings to edit of recipe view
         history.push('/stash');
+
+    }
+
+    const handleEdit = () => {
+        //brings to My Stash view
+        history.push('/stashedit');
 
     }
 
@@ -73,13 +80,13 @@ function MyStashDetail() {
                     BACK
                 </Button>
 
-                {/* <Button
+                <Button
                     variant="contained"
-                    color="error"
+                    color="primary"
                     size="small"
-                    onClick={handleDelete}>
-                    DELETE
-                </Button> */}
+                    onClick={handleEdit}>
+                    Edit
+                </Button>
 
                 <Button 
                 variant="contained" 

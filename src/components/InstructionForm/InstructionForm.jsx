@@ -84,13 +84,6 @@ function Instruction() {
 
                         <p >{item.step} {item.text} </p>
 
-                        <IconButton
-                        aria-label="edit"
-                        color="error"
-                        size="small"
-                        >
-                        <EditOutlinedIcon  />
-                    </IconButton>
                     
                         <IconButton
                         aria-label="delete"

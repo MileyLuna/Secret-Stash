@@ -6,7 +6,7 @@ import axios from 'axios';
 //when saga comes back, refresh and update DOM 
 function* addRecipe(action) {
     try {
-        yield axios.post('/api/recipe', action.payload);
+        yield axios.post('/api/post', action.payload);
         yield put({ type: 'FETCH_ITEM' });
     } catch (error) {
         console.log('ERR with POST addRecipe:', error);

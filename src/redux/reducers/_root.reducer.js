@@ -6,7 +6,7 @@ import holdIngredientReducer from './holdIngredient.reducer';
 import holdInstructionReducer from './holderInstruction.reducer';
 holdInstructionReducer
 import holdRecipeNameReducer from './holdRecipeNameReducer';
-
+import edits from './edit.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
   holdInstructionReducer,
   holdIngredientReducer,
   holdRecipeNameReducer,
+  edits,
 
 
 

@@ -99,14 +99,6 @@ function Ingredient() {
                     return(
                         <div key={i}>
                         <p> {hold.amount} {hold.unit} {hold.ingredient} </p>
-
-                        <IconButton
-                        aria-label="edit"
-                        color="error"
-                        size="small"
-                        onClick={handleEdit}>
-                        <EditOutlinedIcon  />
-                    </IconButton>
                     
                         <IconButton
                         aria-label="delete"
