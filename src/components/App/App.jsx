@@ -26,9 +26,8 @@ import IngredientForm from '../IngredientForm/IngredientForm';
 import InstructionForm from '../InstructionForm/InstructionForm';
 import MyStashDetail from '../MyStashDetail/MyStashDetail';
 import MyStashItem from '../MyStashItem/MyStashItem';
+import MyStashIngredientList from '../MyStashIngredientList/MyStashIngredientList';
 import MyStashEdit from '../MyStashEdit/MyStashEdit';
-
-
 
 import './App.css';
 
@@ -148,6 +147,11 @@ function App() {
           <Route path="/stashedit">
             <MyStashEdit />
           </Route>
+
+          <Route path="/itemlist">
+            <MyStashIngredientList />
+          </Route>
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

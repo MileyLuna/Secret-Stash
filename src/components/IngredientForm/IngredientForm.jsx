@@ -9,7 +9,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-
+import './IngredientForm.css';
 
 function Ingredient() {
 
@@ -97,7 +97,7 @@ function Ingredient() {
             <div className='text'>
                 {holds.map((hold, i)=> {
                     return(
-                        <div key={i}>
+                        <div key={i} className="hold">
                         <p> {hold.amount} {hold.unit} {hold.ingredient} </p>
                     
                         <IconButton

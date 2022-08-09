@@ -15,7 +15,7 @@ const recipeEdit = (state = [], action) => {
 
 const ingredientEdit = (state = [], action) => {
     switch (action.type) {
-        case 'INGREDIENT_EDIT':
+        case 'EDIT_INGREDIENT':
             return action.payload;
         case 'CHANGE_INGREDIENT':
             return { ...state, [action.payload.property]: action.payload.value }
@@ -28,7 +28,7 @@ const ingredientEdit = (state = [], action) => {
 
 const instructionEdit = (state = [], action) => {
     switch (action.type) {
-        case 'INSTRUCTION_EDIT':
+        case 'EDIT_INGREDIENT':
             return action.payload;
         case 'CHANGE_INSTRUCTION':
             return { ...state, [action.payload.property]: action.payload.value }

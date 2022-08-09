@@ -7,9 +7,9 @@ function* recipeDetail(action) {
         console.log('action payload is:', action.payload.id);
         const recipeDetail = yield axios.put(`/api/recipe/edit/${action.payload.id}`, action.payload);
         console.log('fetch RECIPE DETAIL:', recipeDetail.data);
-        yield put({ type: 'SET_RECIPE_DETAIL', payload: recipeDetail.data });
+        yield put({ type: 'SET_RECIPE_DETAIL' });
     } catch (error) {
-        console.log('ERROR in recipeDetail:', error);
+        console.log('ERROR in PUT Recipe SAGA:', error);
     }
 }
 
@@ -17,11 +17,11 @@ function* ingredientDetail(action) {
     try {
         // passes the username and password from the payload to the server
 
-        const ingredientDetail = yield axios.put(`/api/ing/edit/${action.payload}`);
-        // console.log('fetch INGREDIENT:', ingredientDetail.data);
-        yield put({ type: 'SET_INGREDIENT', payload: ingredientDetail.data });
+        const ingredientDetail = yield axios.put(`/api/ing/edit/${action.payload.id}`, action.payload);
+        console.log('fetch INGREDIENT:', ingredientDetail.data);
+        yield put({ type: 'SET_INGREDIENT' });
     } catch (error) {
-        console.log('ERROR in fetchIngredient:', error);
+        console.log('ERROR in PUT Ingredient SAGA:', error);
     }
 }
 
@@ -29,11 +29,11 @@ function* instructionDetail(action) {
     try {
         // passes the username and password from the payload to the server
 
-        const instructionDetail = yield axios.put(`/api/ins/edit/${action.payload}`);
+        const instructionDetail = yield axios.put(`/api/ins/edit/${action.payload.id}`, action.payload);
         console.log('fetch INSTRUCTION:', instructionDetail.data);
-        yield put({ type: 'SET_INSTRUCTION', payload: instructionDetail.data });
+        yield put({ type: 'SET_INSTRUCTION'});
     } catch (error) {
-        console.log('ERROR in fetchInstruction:', error);
+        console.log('ERROR in PUT Instruction SAGA:', error);
     }
 }
 

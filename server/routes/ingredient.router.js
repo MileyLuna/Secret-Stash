@@ -24,14 +24,20 @@ router.get('/detail/:id', (req, res) => {
 
 router.put('/edit/:id', (req,res) => {
     const id = req.params.id;
-    const query = `UPDATE "recipe" set "title" = $1 WHERE "id" = $2;`;
+    const item = req.body;
 
-    pool.query(query, [req.body.title, id])
+    const query = `UPDATE "ingredient" 
+    SET "amount" = $1,
+    "unit" = $2,
+    "ingredient" = $3
+    WHERE "id" = $4;`;
+
+    pool.query(query, [item.amount, item.unit, item.ingredient, id])
     .then(result => {
         res.send(result.rows);
     })
     .catch(err => {
-        console.log('ERROR: delete selected recipe', err);
+        console.log('ERROR: PUT ingredient router', err);
         res.sendStatus(500)
     })
 
