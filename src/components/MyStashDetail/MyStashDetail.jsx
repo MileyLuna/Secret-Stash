@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -8,8 +8,13 @@ import { useHistory, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
+import TextField from '@mui/material/TextField';
+import Swal from 'sweetalert2';
 
-
+//COMPONENTS
+import MyStashRecipeDetail from "../MyStashRecipeDetail/MyStashRecipeDetail";
+import MyStashIngredientList from "../MyStashIngredientList/MyStashIngredientList";
+import MyStashInstructionList from "../MyStashIntructionList/MyStashInstructionList";
 
 function MyStashDetail() {
     const dispatch = useDispatch();
@@ -20,7 +25,9 @@ function MyStashDetail() {
     // const recipes = useSelector((store) => store.recipe.recipeReducer);
     const ingredients = useSelector((store) => store.recipe.ingredientReducer);
     const instructions = useSelector((store) => store.recipe.instructionReducer);
-    const details = useSelector((store) => store.recipe.detailReducer);
+
+    const [update, setUpdate] = useState(false);
+
 
     useEffect(() => {
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
@@ -33,45 +40,61 @@ function MyStashDetail() {
 
     }
 
-    const handleEdit = () => {
-        //brings to My Stash view
-        history.push('/stashedit');
-
-    }
 
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_RECIPE', payload: id })
-        dispatch({ type: 'DELETE_INSTRUCTION', payload: id })
-        dispatch({ type: 'DELETE_INGREDIENT', payload: id })
-        history.push('/stash');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
+                dispatch({ type: 'DELETE_RECIPE', payload: id })
+                dispatch({ type: 'DELETE_INSTRUCTION', payload: id })
+                dispatch({ type: 'DELETE_INGREDIENT', payload: id })
+                //go to My Stash after deletion
+                history.push('/stash');
+            }
+        });
+
 
     }
 
 
     return (
         <>
-            <h1>{details[0]?.title}</h1>
-            <img src={details[0]?.poster} />
+
+            <MyStashRecipeDetail />
+
+
+
             <br></br>
             <h3>INGREDIENT</h3>
-            {ingredients.map((ing) => {
+            {ingredients.map((item) => {
                 return (
-                    <div key={ing.id}>
-                        <p>{ing.amount} {ing.unit} {ing.ingredient}</p>
-                    </div>
+
+                    <MyStashIngredientList key={item.id} item={item} />
+
                 )
             })}
             <br></br>
             <h3>INSTRUCTION</h3>
-            {instructions.map((ins) => {
+            {instructions.map((list) => {
                 return (
-                    <div key={ins.id}>
-                        <p>{ins.step_num}. {ins.text}</p>
-                    </div>
+                    <MyStashInstructionList key={list.id} list={list}/>
+
 
                 )
             })}
-
             <Stack direction="row" spacing={3}>
                 <Button
                     variant="outlined"
@@ -80,27 +103,32 @@ function MyStashDetail() {
                     BACK
                 </Button>
 
+                {update ?
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        onClick={() => setUpdate(!update)}>
+                        UPDATE
+                    </Button>
+                    :
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        onClick={() => setUpdate(!update)}>
+                        Edit
+                    </Button>
+                }
+
                 <Button
                     variant="contained"
-                    color="primary"
-                    size="small"
-                    onClick={handleEdit}>
-                    Edit
-                </Button>
-
-                <Button 
-                variant="contained" 
-                onClick={handleDelete} 
-                color="error"
-                startIcon={<DeleteIcon />}>
+                    onClick={handleDelete}
+                    color="error"
+                    startIcon={<DeleteIcon />}>
                     Delete
                 </Button>
-
-
-
             </Stack>
-
-
         </>
     )
 }

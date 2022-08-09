@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
+import Swal from 'sweetalert2';
+
 
 //CSS
 import './AddRecipe.css';
@@ -66,7 +68,9 @@ console.log('this is recipe title:', name);
                 title: name
 
             }
-        })
+        });
+
+        history.push('/stash');
 
 
     }
