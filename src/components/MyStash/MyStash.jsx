@@ -32,7 +32,7 @@ function MyStash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_RECIPE' })
-    }, [dispatch]);
+    }, []);
 
     const addNewClick = () => {
         console.log('click add recipe');
