@@ -38,10 +38,10 @@ function AddRecipe() {
     const handleBack = () => {
         console.log('clicked back');
         //clear all in holder reducers
-        dispatch({ type: 'CLEAR_NAME'});
-        dispatch({ type: 'CLEAR_INGREDIENT'});
-        dispatch({type: 'CLEAR_INSTRUCTION'});
-        
+        dispatch({ type: 'CLEAR_NAME' });
+        dispatch({ type: 'CLEAR_INGREDIENT' });
+        dispatch({ type: 'CLEAR_INSTRUCTION' });
+
         //takes back to My Stash view
         history.push('/stash');
 
@@ -56,10 +56,25 @@ function AddRecipe() {
             type: 'HOLD_NAME',
             payload: name
         });
-        //send and add new recipe to database
 
-console.log('this is recipe title:', name);
-        
+        // console.log('this is recipe title:', name);
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+        })
+
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Added to The Vault!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        //send and add new recipe to database
         dispatch({
             type: 'ADD_RECIPE',
             payload: {
@@ -69,6 +84,8 @@ console.log('this is recipe title:', name);
 
             }
         });
+
+
 
         history.push('/stash');
 
@@ -106,7 +123,11 @@ console.log('this is recipe title:', name);
             </div>
 
 
-            <Stack direction="row" spacing={3}>
+            <Stack
+                direction="row"
+                spacing={3}
+                justifyContent="space-around"
+                alignItems="center">
                 <Button
                     variant="outlined"
                     size="small"

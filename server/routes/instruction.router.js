@@ -22,28 +22,24 @@ router.get('/detail/:id', (req, res) => {
 
 });
 
-router.put('/edit/:id', (req,res) => {
+router.put('/edit/:id', (req, res) => {
     const id = req.params.id;
-    const query = `UPDATE "recipe" set "title" = $1 WHERE "id" = $2;`;
+    const list = req.body.newList;
 
-    pool.query(query, [req.body.title, id])
-    .then(result => {
-        res.send(result.rows);
-    })
-    .catch(err => {
-        console.log('ERROR: delete selected recipe', err);
-        res.sendStatus(500)
-    })
+    const query = `UPDATE "instruction" SET 
+    "step_num" = $1, "text" = $2 WHERE "id" = $3;`;
+
+    pool.query(query, [list.number, list.step, id])
+        .then(result => {
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: PUT instruction router', err);
+            res.sendStatus(500)
+        })
 
 
 })
-
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-    // POST route code here
-});
 
 
 

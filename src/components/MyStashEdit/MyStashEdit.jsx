@@ -1,41 +1,140 @@
-//COMPONENTS
-import { useSelector } from "react-redux";
-import MyStashIngredientList from "../MyStashIngredientList/MyStashIngredientList";
-import MyStashInstructionList from "../MyStashIntructionList/MyStashInstructionList";
 
-function MyStashEdit () {
+//COMPONENT
+import MyStashRecipeDetail from '../MyStashRecipeDetail/MyStashRecipeDetail';
+import MyStashIngredientList from '../MyStashIngredientList/MyStashIngredientList';
+import MyStashInstructionList from '../MyStashIntructionList/MyStashInstructionList';
 
-    //bring in reducer that temporary holds the information
-    const recipe = useSelector((store) => store.edits.recipeEdit);
-    const ingredient = useSelector((store) => store.edits.ingredientEdit);
-    const instruction = useSelector((store) => store.edits.instructionEdit);
+//MUI
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
 
-    return(
+
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from 'react-router-dom';
+
+
+function MyStashEdit() {
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+    // const {id} = useParams();
+
+    //reducer that's storing old/current value
+    const name = useSelector((store) => store.recipe.detailReducer);
+    const items = useSelector((store) => store.recipe.ingredientReducer);
+    const lists = useSelector((store) => store.recipe.instructionReducer);
+
+    //reducer that's storing new onchange value
+    const newName = useSelector((store) => store.edits.recipeEdit);
+    const newItem = useSelector((store) => store.edits.ingredientEdit);
+    const newList = useSelector((store) => store.edits.instructionEdit);
+
+
+    const handleUpdate = (event) => {
+        event.preventDefault();
+        console.log('this id id:',);
+
+        //go to edit saga with new information to update DB
+        dispatch({ type: 'RECIPE_DETAIL', payload: newName });
+        dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem });
+        dispatch({ type: 'INSTRUCTION_DETAIL', payload: newList });
+
+        history.push('/stashdetail')
+    }
+
+    const handleSave = (event) => {
+        event.preventDefault();
+        console.log('this id id:', name[0].id)
+
+        dispatch({
+            type: 'RECIPE_DETAIL',
+            payload: newName
+        });
+    }
+
+    const handleChange = (event, property) => {
+        dispatch({ type: 'CHANGE_RECIPE', 
+        payload: {property: property, 
+            value: event.target.value }
+        })
+    }
+    // useEffect(() => {
+    //     dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
+    //     dispatch({ type: 'FETCH_INGREDIENT', payload: id });
+    //     dispatch({ type: 'FETCH_INSTRUCTION', payload: id });
+
+    // }, [])
+
+    return (
 
         <>
-        
-        <div>
-            <h1>{recipe[0]?.title}</h1>
-            <img src={recipe[0]?.poster} />
-        </div>
+            <div>
+            <MyStashRecipeDetail />
 
-        <div>
-            {ingredient.map((item) => {
-                return(
-                    <MyStashIngredientList key={item.id} list={item}/>
-                )
-            })}
-        </div>
+                {/* <form onSubmit={handleSave}>
+                    <Stack direction="row" spacing={3}>
 
-        <div>
-            {instruction.map((list) => {
-                return(
-                    <MyStashInstructionList key={list.id} list={list} />
-                )
-            })}
-        </div>
-        
-        
+                        <TextField
+                            label={name[0]?.title}
+                            id="recipe-name"
+                            value={name[0]?.title}
+                            onChange={(event) => handleChange(event, 'title')}
+                            size="small"
+                            variant="standard"
+                        />
+
+                        <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                onClick={handleSave}>
+                                SAVE
+                            </Button> 
+                    </Stack>
+                </form>
+
+                <br></br>
+                <img src={name[0]?.poster} /> 
+    */}
+            
+
+
+            </div>
+
+
+            <div>
+                <h3>INGREDIENT</h3>
+
+                {items.map((item) => {
+                    return (
+                        <MyStashIngredientList key={item.id} item={item} newItem={newItem} />
+
+                    )
+                })}
+            </div>
+
+            <div>
+                <h3>INSTRUCTION</h3>
+                {lists.map((list) => {
+                    return (
+                        <MyStashInstructionList key={list.id} list={list} newList={newList} />
+
+                    )
+                })}
+            </div>
+
+
+<br></br>
+            <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                onClick={handleUpdate}>
+                UPDATE
+            </Button>
+
         </>
     )
 }

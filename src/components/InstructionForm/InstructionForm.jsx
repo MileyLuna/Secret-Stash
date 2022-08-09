@@ -10,6 +10,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
+import './InstructionForm.css';
 
 
 function Instruction() {
@@ -80,7 +81,7 @@ function Instruction() {
             <div>
                 {hold.map((item,i) => {
                     return(
-                        <div key={i}>
+                        <div key={i} className="item">
 
                         <p >{item.step} {item.text} </p>
 

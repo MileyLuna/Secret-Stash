@@ -1,5 +1,8 @@
 //MUI
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -11,68 +14,60 @@ function MyStashRecipeDetail() {
 
     const dispatch = useDispatch();
 
-    const details = useSelector((store) => store.recipe.detailReducer);
+    const newName = useSelector((store)=> store.edits.recipeEdit);
+    const name = useSelector((store) => store.recipe.ingredientReducer);
 
-    const [update, setUpdate] = useState(false);
-    const [name, setName] = useState('');
-
-
-
-    const handleNameEdit = (event) => {
+    const handleSave = (event) => {
         event.preventDefault();
-        console.log('this id id:', details[0].id)
+        console.log('this id id:', name[0].id)
 
         dispatch({
             type: 'RECIPE_DETAIL',
-            payload: {
-                id: details[0].id,
-                title: name
-            }
-        });
-
-        setUpdate(!update);
-
+            payload: newName});
     }
+
+    const handleChange = (event, property) => {
+        dispatch({ type: 'CHANGE_RECIPE', 
+        payload: {property: property, 
+            value: event.target.value }
+        })
+    }
+
+    
 
 
     return (
         <>
 
-            {update ?
                 <div>
-                    <form onSubmit={handleNameEdit}>
+                    <form onSubmit={handleSave}>
                         <Stack direction="row" spacing={3}>
 
                             <TextField
-                                label={details[0]?.title}
+                                label={name[0].title}
                                 id="recipe-name"
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
+                                value={newName[0].title}
+                                onChange={(event) => handleChange(event, 'title')}
                                 size="small"
                                 variant="standard"
                             />
 
-                            <Button
+                            {/* <Button
                                 variant="contained"
                                 color="primary"
                                 size="small"
-                                onClick={handleNameEdit}>
+                                onClick={handleSave}>
                                 SAVE
-                            </Button>
+                            </Button> */}
                         </Stack>
                     </form>
 
                     <br></br>
-                    <img src={details[0]?.poster} />
+                    <img src={name[0].poster} />
 
 
                 </div>
-                :
-                <div>
-                    <h1>{details[0]?.title}</h1>
-                    <img src={details[0]?.poster} />
-                </div>
-            }
+
         </>
     )
 }

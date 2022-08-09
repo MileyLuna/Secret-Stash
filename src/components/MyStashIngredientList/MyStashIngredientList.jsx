@@ -1,78 +1,74 @@
 //MUI
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 
+function MyStashIngredientList({ item, newItem }) {
+    const dispatch = useDispatch();
 
-function MyStashIngredientList({ item }) {
-
-    const [update, setUpdate] = useState(false);
-
-    const [amount, setAmount] = useState('');
-    const [unit, setUnit] = useState('');
-    const [ingredient, setIngredient] = useState('');
-
-    const handleNameEdit = (event) => {
+    const handleSave = (event) => {
         event.preventDefault();
-        console.log('this id id:', details[0].id)
-
-        dispatch({
-            type: 'RECIPE_DETAIL',
-            payload: {amount, unit, ingredient}
-        });
-
-        setUpdate(!update);
-
+        dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem })
     }
+
+    const handleChange = (event, property) => {
+        dispatch({ type: 'CHANGE_INGREDIENT', 
+        payload: {property: property, 
+            value: event.target.value }
+        })
+    }
+
+
 
 
     return (
         <>
-            {update ?
-                <form onSubmit={handleAdd}>
+            <div>
+                <form onSubmit={handleSave}>
                     <Stack direction="row" spacing={3}>
                         <TextField
                             label={item.amount}
-                            id="standard-size-small"
-                            value={amount}
-                            onChange={(event) => setAmount(event.target.value)}
+                            id="item-amount"
+                            value={newItem.amount}
+                            onChange={(event) => handleChange(event,  'amount')}
                             size="small"
                             variant="standard"
                         />
                         <TextField
                             label={item.unit}
-                            id="standard-size-small2"
-                            value={unit}
-                            onChange={(event) => setUnit(event.target.value)}
+                            id="item-unit"
+                            value={newItem.unit}
+                            onChange={(event) => handleChange(event, 'unit')}
                             size="small"
                             variant="standard"
                         />
                         <TextField
                             label={item.ingredient}
-                            id="standard-size-small3"
-                            value={ingredient}
-                            onChange={(event) => setIngredient(event.target.value)}
+                            id="item-ingredient"
+                            value={newItem.ingredient}
+                            onChange={(event) => handleChange(event, 'ingredient')}
                             size="small"
                             variant="standard"
                         />
 
-                        <Button
+                        {/* <Button
                             variant="contained"
                             color="primary"
                             size="small"
-                            onClick={handleNameEdit}>
+                            onClick={handleSave}>
                             SAVE
-                        </Button>
+                        </Button> */}
 
                     </Stack>
 
                 </form>
-                :
-                <p>{item.amount} {item.unit} {item.ingredient}</p>
-            }
+            </div>
         </>
     )
 }
