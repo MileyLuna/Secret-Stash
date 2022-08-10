@@ -29,7 +29,7 @@ function MyStashIngredientList({ item, newItem }) {
 
     return (
         <>
-            <div>
+            <div key={item.id}>
                 <form onSubmit={handleSave}>
                     <Stack direction="row" spacing={3}>
                         <TextField
@@ -57,13 +57,13 @@ function MyStashIngredientList({ item, newItem }) {
                             variant="standard"
                         />
 
-                        {/* <Button
+                        <Button
                             variant="contained"
                             color="primary"
                             size="small"
                             onClick={handleSave}>
                             SAVE
-                        </Button> */}
+                        </Button>
 
                     </Stack>
 

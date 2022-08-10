@@ -26,11 +26,14 @@ router.put('/edit/:id', (req, res) => {
     const id = req.params.id;
     const list = req.body.newList;
 
+    console.log('intruction put load is:', req.body.newList);
+
     const query = `UPDATE "instruction" SET 
     "step_num" = $1, "text" = $2 WHERE "id" = $3;`;
 
     pool.query(query, [list.number, list.step, id])
         .then(result => {
+            console.log('intruction PUT:', result);
             res.send(result.rows);
         })
         .catch(err => {

@@ -26,9 +26,9 @@ function MyStashRecipeDetail() {
             payload: newName});
     }
 
-    const handleChange = (event, property) => {
+    const handleChange = (event) => {
         dispatch({ type: 'CHANGE_RECIPE', 
-        payload: {property: property, 
+        payload: {property: 'title', 
             value: event.target.value }
         })
     }
@@ -40,30 +40,31 @@ function MyStashRecipeDetail() {
         <>
 
                 <div>
+                    <h1> new recipe name is: {newName.title} at this ID: {newName[0].id}</h1>
                     <form onSubmit={handleSave}>
                         <Stack direction="row" spacing={3}>
 
                             <TextField
-                                label={name[0].title}
+                                label={name[0]?.title}
                                 id="recipe-name"
-                                value={newName[0].title}
-                                onChange={(event) => handleChange(event, 'title')}
+                                value={newName.title}
+                                onChange={(event) => handleChange(event)}
                                 size="small"
                                 variant="standard"
                             />
 
-                            {/* <Button
+                            <Button
                                 variant="contained"
                                 color="primary"
                                 size="small"
                                 onClick={handleSave}>
                                 SAVE
-                            </Button> */}
+                            </Button>
                         </Stack>
                     </form>
 
                     <br></br>
-                    <img src={name[0].poster} />
+                    <img src={name[0]?.poster} />
 
 
                 </div>

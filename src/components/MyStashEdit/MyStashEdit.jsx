@@ -37,29 +37,14 @@ function MyStashEdit() {
         console.log('this id id:',);
 
         //go to edit saga with new information to update DB
-        dispatch({ type: 'RECIPE_DETAIL', payload: newName });
-        dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem });
-        dispatch({ type: 'INSTRUCTION_DETAIL', payload: newList });
-
-        history.push('/stashdetail')
+        //payload is all information holding in reducer
+        // dispatch({ type: 'RECIPE_DETAIL', payload: newName });
+        // dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem });
+        // dispatch({ type: 'INSTRUCTION_DETAIL', payload: newList });
+        //return to MyStashDetail
+        history.push(`/stashdetail/${newName[0].id}`)
     }
 
-    const handleSave = (event) => {
-        event.preventDefault();
-        console.log('this id id:', name[0].id)
-
-        dispatch({
-            type: 'RECIPE_DETAIL',
-            payload: newName
-        });
-    }
-
-    const handleChange = (event, property) => {
-        dispatch({ type: 'CHANGE_RECIPE', 
-        payload: {property: property, 
-            value: event.target.value }
-        })
-    }
     // useEffect(() => {
     //     dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
     //     dispatch({ type: 'FETCH_INGREDIENT', payload: id });

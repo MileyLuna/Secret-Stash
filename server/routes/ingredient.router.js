@@ -24,7 +24,9 @@ router.get('/detail/:id', (req, res) => {
 
 router.put('/edit/:id', (req,res) => {
     const id = req.params.id;
-    const item = req.body;
+    const item = req.body.newItem;
+
+    console.log('ingredient put load is:', req.body.newItem);
 
     const query = `UPDATE "ingredient" 
     SET "amount" = $1,
@@ -34,6 +36,7 @@ router.put('/edit/:id', (req,res) => {
 
     pool.query(query, [item.amount, item.unit, item.ingredient, id])
     .then(result => {
+        console.log('ingredient PUT:', result);
         res.send(result.rows);
     })
     .catch(err => {
