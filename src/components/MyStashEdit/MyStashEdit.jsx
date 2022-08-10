@@ -45,6 +45,11 @@ function MyStashEdit() {
         history.push(`/stashdetail/${newName[0].id}`)
     }
 
+    const handleBack = () => {
+        history.push(`/stashdetail/${newName[0].id}`)
+
+    }
+
     // useEffect(() => {
     //     dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
     //     dispatch({ type: 'FETCH_INGREDIENT', payload: id });
@@ -56,35 +61,7 @@ function MyStashEdit() {
 
         <>
             <div>
-            <MyStashRecipeDetail />
-
-                {/* <form onSubmit={handleSave}>
-                    <Stack direction="row" spacing={3}>
-
-                        <TextField
-                            label={name[0]?.title}
-                            id="recipe-name"
-                            value={name[0]?.title}
-                            onChange={(event) => handleChange(event, 'title')}
-                            size="small"
-                            variant="standard"
-                        />
-
-                        <Button
-                                variant="contained"
-                                color="primary"
-                                size="small"
-                                onClick={handleSave}>
-                                SAVE
-                            </Button> 
-                    </Stack>
-                </form>
-
-                <br></br>
-                <img src={name[0]?.poster} /> 
-    */}
-            
-
+                <MyStashRecipeDetail />
 
             </div>
 
@@ -111,7 +88,15 @@ function MyStashEdit() {
             </div>
 
 
-<br></br>
+            <br></br>
+                <Stack direction="row" spacing={3}>
+            <Button
+                variant="outlined"
+                size="small"
+                onClick={handleBack}>
+                BACK
+            </Button>
+
             <Button
                 variant="contained"
                 color="primary"
@@ -119,6 +104,7 @@ function MyStashEdit() {
                 onClick={handleUpdate}>
                 UPDATE
             </Button>
+            </Stack>
 
         </>
     )

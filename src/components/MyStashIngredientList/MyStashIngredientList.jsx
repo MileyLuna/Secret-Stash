@@ -12,15 +12,28 @@ import { useSelector } from "react-redux";
 function MyStashIngredientList({ item, newItem }) {
     const dispatch = useDispatch();
 
+    // const [amount, setAmount] = useState('');
+    // const [unit, setUnit] = useState('');
+    // const [ingredient, setIngredient] = useState('');
+
+    const [update, setUpdate] = useState(false);
+
+    // const edit = () => {
+    //     setUpdate(!update);
+    // }
+
     const handleSave = (event) => {
         event.preventDefault();
+
+        console.log('this ingredient id:', newItem)
+
         dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem })
     }
 
     const handleChange = (event, property) => {
         dispatch({ type: 'CHANGE_INGREDIENT', 
         payload: {property: property, 
-            value: event.target.value }
+                value: event.target.value }
         })
     }
 
@@ -29,12 +42,15 @@ function MyStashIngredientList({ item, newItem }) {
 
     return (
         <>
-            <div key={item.id}>
+        {update ?
+            <div 
+            // key={item.id}
+            >
                 <form onSubmit={handleSave}>
                     <Stack direction="row" spacing={3}>
                         <TextField
                             label={item.amount}
-                            id="item-amount"
+                            id="amount"
                             value={newItem.amount}
                             onChange={(event) => handleChange(event,  'amount')}
                             size="small"
@@ -42,7 +58,7 @@ function MyStashIngredientList({ item, newItem }) {
                         />
                         <TextField
                             label={item.unit}
-                            id="item-unit"
+                            id="unit"
                             value={newItem.unit}
                             onChange={(event) => handleChange(event, 'unit')}
                             size="small"
@@ -50,7 +66,7 @@ function MyStashIngredientList({ item, newItem }) {
                         />
                         <TextField
                             label={item.ingredient}
-                            id="item-ingredient"
+                            id="ingredient"
                             value={newItem.ingredient}
                             onChange={(event) => handleChange(event, 'ingredient')}
                             size="small"
@@ -66,9 +82,21 @@ function MyStashIngredientList({ item, newItem }) {
                         </Button>
 
                     </Stack>
-
+                    
                 </form>
             </div>
+                :
+                <div>
+                    <p>{item.amount} {item.unit} {item.ingredient}</p>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        onClick={() => setUpdate(!update)}>
+                        EDIT
+                    </Button>
+                </div>
+}
         </>
     )
 }

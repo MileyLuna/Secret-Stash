@@ -41,6 +41,9 @@ function MyStashDetail() {
 
     //takes to MyStashEdit for updates option
     const handleEdit = () => {
+        console.log('whats in detail:', details);
+        console.log('whats in ingredient:', ingredients);
+        console.log('whats in instruction:', instructions);
         dispatch({type: 'EDIT_RECIPE', payload: details})
         dispatch({type: 'EDIT_INGREDIENT', payload: ingredients})
         dispatch({type: 'EDIT_INSTRUCTION', payload: instructions})
@@ -121,7 +124,7 @@ function MyStashDetail() {
 
             <br></br>
 
-            <Stack direction="row" cols={3} spacing={3}>
+            <Stack direction="row" spacing={3}>
                 <Button
                     variant="outlined"
                     size="small"

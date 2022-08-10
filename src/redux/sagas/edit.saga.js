@@ -4,10 +4,10 @@ import axios from 'axios';
 function* recipeDetail(action) {
     try {
         // passes the username and password from the payload to the server
-        console.log('action payload is:', action.payload.id);
+        console.log('action payload is:', action.payload.id, action.payload);
         const recipeDetail = yield axios.put(`/api/recipe/edit/${action.payload.id}`, action.payload);
         console.log('fetch RECIPE DETAIL:', recipeDetail.data);
-        yield put({ type: 'SET_RECIPE_DETAIL' });
+        // yield put({ type: 'SET_RECIPE_DETAIL' });
     } catch (error) {
         console.log('ERROR in PUT Recipe SAGA:', error);
     }
@@ -16,7 +16,7 @@ function* recipeDetail(action) {
 function* ingredientDetail(action) {
     try {
         // passes the username and password from the payload to the server
-
+        console.log('ingredientDetail action payload is:', action.payload.id, action.payload);
         const ingredientDetail = yield axios.put(`/api/ing/edit/${action.payload.id}`, action.payload);
         console.log('fetch INGREDIENT:', ingredientDetail.data);
         yield put({ type: 'SET_INGREDIENT' });
