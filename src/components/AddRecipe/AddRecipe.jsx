@@ -81,20 +81,25 @@ function AddRecipe() {
                 instruction: instruction,
                 ingredient: ingredient,
                 title: name
-
             }
         });
 
-
+        dispatch({ type: 'CLEAR_NAME' });
+        dispatch({ type: 'CLEAR_INGREDIENT' });
+        dispatch({ type: 'CLEAR_INSTRUCTION' });
 
         history.push('/stash');
-
-
     }
 
+    //clear reducer and DOM
+    const handleClear = () => {
+        dispatch({ type: 'CLEAR_NAME' });
+        dispatch({ type: 'CLEAR_INGREDIENT' });
+        dispatch({ type: 'CLEAR_INSTRUCTION' });
+    }
 
     return (
-        <>
+        <div className="main">
 
             <TextField
                 label="Recipe Name"
@@ -121,31 +126,40 @@ function AddRecipe() {
                 <InstructionForm />
 
             </div>
+<br></br>
+            <div>
+                <Stack
+                    direction="row"
+                    spacing={3}
+                    justifyContent="space-around"
+                    alignItems="center">
+                    <Button
+                        variant="outlined"
+                        size="small"
+                        onClick={handleBack}>
+                        BACK
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="warning"
+                        size="small"
+                        onClick={handleClear}>
+                        CLEAR
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        color="success"
+                        size="small"
+                        onClick={handleSave}>
+                        SAVE
+                    </Button>
+                </Stack>
+
+            </div>
 
 
-            <Stack
-                direction="row"
-                spacing={3}
-                justifyContent="space-around"
-                alignItems="center">
-                <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={handleBack}>
-                    BACK
-                </Button>
-
-                <Button
-                    variant="contained"
-                    color="success"
-                    size="small"
-                    onClick={handleSave}>
-                    SAVE
-                </Button>
-            </Stack>
-
-
-        </>
+        </div>
 
 
 

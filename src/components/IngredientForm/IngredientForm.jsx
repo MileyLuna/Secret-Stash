@@ -30,7 +30,7 @@ function Ingredient() {
         clearInputs();
         dispatch({
             type: 'HOLD_INGREDIENT',
-        payload: {amount, unit, ingredient} 
+            payload: { amount, unit, ingredient }
         })
 
 
@@ -40,9 +40,6 @@ function Ingredient() {
 
     }
 
-    const handleEdit = () => {
-
-    }
 
 
     const clearInputs = () => {
@@ -95,20 +92,22 @@ function Ingredient() {
 
             {/* output text TextField */}
             <div className='text'>
-                {holds.map((hold, i)=> {
-                    return(
+                {holds.map((hold, i) => {
+                    return (
                         <div key={i} className="hold">
-                        <p> {hold.amount} {hold.unit} {hold.ingredient} </p>
-                    
-                        <IconButton
-                        aria-label="delete"
-                        color="error"
-                        size="small"
-                        onClick={handleDelete}>
-                        <RemoveIcon />
-                    </IconButton>
+                            <div>
+                                <p> {hold.amount} {hold.unit} {hold.ingredient} </p>
+                            </div>
 
-
+                            <div>
+                                <IconButton
+                                    aria-label="delete"
+                                    color="error"
+                                    size="small"
+                                    onClick={handleDelete}>
+                                    <RemoveIcon />
+                                </IconButton>
+                            </div>
                         </div>
 
 

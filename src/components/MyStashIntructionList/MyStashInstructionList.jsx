@@ -13,6 +13,11 @@ function MyStashInstructionList({ list, newList }) {
 
     const dispatch = useDispatch();
 
+    const [amount, setAmount] = useState('');
+    const [unit, setUnit] = useState('');
+    const [ingredient, setIngredient] = useState('');
+
+
     const handleSave = (event) => {
         event.preventDefault();
         console.log('this id id:',);
@@ -41,7 +46,7 @@ function MyStashInstructionList({ list, newList }) {
 
                         <TextField
                             label={list.step_num}
-                            id="list-step_num"
+                            id="list-text"
                             value={newList.step_num}
                             onChange={(event) => handleChange(event, 'step')}
                             size="small"

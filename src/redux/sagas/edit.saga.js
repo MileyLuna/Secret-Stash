@@ -16,7 +16,7 @@ function* recipeDetail(action) {
 function* ingredientDetail(action) {
     try {
         // passes the username and password from the payload to the server
-
+        console.log('ingredientDetail action payload is:', action.payload.id, action.payload);
         const ingredientDetail = yield axios.put(`/api/ing/edit/${action.payload.id}`, action.payload);
         console.log('fetch INGREDIENT:', ingredientDetail.data);
         yield put({ type: 'SET_INGREDIENT' });

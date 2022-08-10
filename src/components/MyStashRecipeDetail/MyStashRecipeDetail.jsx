@@ -17,7 +17,7 @@ function MyStashRecipeDetail() {
     const newName = useSelector((store)=> store.edits.recipeEdit);
     const names = useSelector((store) => store.recipe.detailReducer);
 
-    const [name, setName] = useState(names[0].title);
+    const [name, setName] = useState('');
 
     const handleSave = (event) => {
         event.preventDefault();
@@ -47,7 +47,9 @@ function MyStashRecipeDetail() {
         <>
 
                 <div>
-                    <h1> old recipe name: {names[0]?.title} new recipe name is: {name} at this ID: {newName[0].id}</h1>
+                    <h2> old recipe name: {names[0]?.title} </h2>
+                    <h2> new recipe name is: {name}</h2>
+                    <h2> at this ID: {newName[0].id}</h2>
                     <form onSubmit={handleSave}>
                         <Stack direction="row" spacing={3}>
 
@@ -71,7 +73,7 @@ function MyStashRecipeDetail() {
                     </form>
 
                     <br></br>
-                    <img src={name[0]?.poster} />
+                    <img src={names[0]?.poster} />
 
 
                 </div>
