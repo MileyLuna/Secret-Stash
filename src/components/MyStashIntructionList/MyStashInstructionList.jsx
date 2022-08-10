@@ -35,7 +35,7 @@ function MyStashInstructionList({ list, newList }) {
     return (
         <>
 
-            <div>
+            <div key={list.id}>
                 <form onSubmit={handleSave}>
                     <Stack direction="row" spacing={3}>
 
@@ -58,13 +58,13 @@ function MyStashInstructionList({ list, newList }) {
                         />
 
 
-                        {/* <Button
+                        <Button
                             variant="contained"
                             color="primary"
                             size="small"
                             onClick={handleSave}>
                             SAVE
-                        </Button> */}
+                        </Button>
                     </Stack>
                 </form>
             </div>

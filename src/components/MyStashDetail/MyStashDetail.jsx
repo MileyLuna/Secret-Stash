@@ -25,7 +25,7 @@ function MyStashDetail() {
     const instructions = useSelector((store) => store.recipe.instructionReducer);
     const details = useSelector((store) => store.recipe.detailReducer);
  
-
+    //onload automatically summon all information regarding this ID
     useEffect(() => {
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
         dispatch({ type: 'FETCH_INGREDIENT', payload: id });
@@ -39,6 +39,7 @@ function MyStashDetail() {
         history.push('/stash');
     }
 
+    //takes to MyStashEdit for updates option
     const handleEdit = () => {
         dispatch({type: 'EDIT_RECIPE', payload: details})
         dispatch({type: 'EDIT_INGREDIENT', payload: ingredients})
@@ -48,7 +49,7 @@ function MyStashDetail() {
     }
 
 
-
+    //delete current recipe from database
     const handleDelete = () => {
 
         Swal.fire({
@@ -80,7 +81,7 @@ function MyStashDetail() {
 
     return (
         <div className="stashdetail">
-
+                {/* show recipe name and pic */}
                 <div>
                     <h1>{details[0]?.title}</h1>
                     <img src={details[0]?.poster} />
@@ -88,7 +89,7 @@ function MyStashDetail() {
 
 
             <br></br>
-
+            {/* maps out ingredients for selected recipe */}
             <div className="item">
                 <h3>INGREDIENT</h3>
 
@@ -104,7 +105,7 @@ function MyStashDetail() {
             </div>
             <br></br>
 
-
+            {/* maps out instruction for selected recipe */}
             <div className="list">
                 <h3>INSTRUCTION</h3>
 
