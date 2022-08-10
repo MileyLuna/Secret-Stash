@@ -15,23 +15,30 @@ function MyStashRecipeDetail() {
     const dispatch = useDispatch();
 
     const newName = useSelector((store)=> store.edits.recipeEdit);
-    const name = useSelector((store) => store.recipe.ingredientReducer);
+    const names = useSelector((store) => store.recipe.detailReducer);
+
+    const [name, setName] = useState(names[0].title);
 
     const handleSave = (event) => {
         event.preventDefault();
-        console.log('this id id:', name[0].id)
+        console.log('this recipe id:', names[0].id)
+
+        // dispatch({ type: 'CHANGE_RECIPE', 
+        // payload: name
+        // })
 
         dispatch({
             type: 'RECIPE_DETAIL',
-            payload: newName});
+            payload: {title: name,
+            id: names[0].id} });
     }
 
-    const handleChange = (event) => {
-        dispatch({ type: 'CHANGE_RECIPE', 
-        payload: {property: 'title', 
-            value: event.target.value }
-        })
-    }
+    // const handleChange = (event) => {
+    //     dispatch({ type: 'CHANGE_RECIPE', 
+    //     payload: {property, 
+    //         value: event.target.value }
+    //     })
+    // }
 
     
 
@@ -40,15 +47,15 @@ function MyStashRecipeDetail() {
         <>
 
                 <div>
-                    <h1> new recipe name is: {newName.title} at this ID: {newName[0].id}</h1>
+                    <h1> old recipe name: {names[0]?.title} new recipe name is: {name} at this ID: {newName[0].id}</h1>
                     <form onSubmit={handleSave}>
                         <Stack direction="row" spacing={3}>
 
                             <TextField
-                                label={name[0]?.title}
+                                label={names[0]?.title}
                                 id="recipe-name"
-                                value={newName.title}
-                                onChange={(event) => handleChange(event)}
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}
                                 size="small"
                                 variant="standard"
                             />

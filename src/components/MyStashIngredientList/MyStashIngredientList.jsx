@@ -12,6 +12,10 @@ import { useSelector } from "react-redux";
 function MyStashIngredientList({ item, newItem }) {
     const dispatch = useDispatch();
 
+    const [amount, setAmount] = useState('');
+    const [unit, setUnit] = useState('');
+    const [ingredient, setIngredient] = useState('');
+
     const handleSave = (event) => {
         event.preventDefault();
         dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem })

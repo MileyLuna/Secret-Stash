@@ -69,7 +69,11 @@ router.get('/user', (req, res) => {
 router.put('/edit/:id', (req,res) => {
     const id = req.params.id;
     const title = req.body;
+    
+    console.log('req.body is:', req.body);
+    
     const query = `UPDATE "recipe" set "title" = $1 WHERE "id" = $2;`;
+    
     console.log('recipe put load is:', req.body);
 
     pool.query(query, [title.title, id])
