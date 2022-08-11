@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { actionChannel, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* recipeDetail(action) {
@@ -7,7 +7,7 @@ function* recipeDetail(action) {
         console.log('action payload is:', action.payload.id, action.payload);
         const recipeDetail = yield axios.put(`/api/recipe/edit/${action.payload.id}`, action.payload);
         console.log('fetch RECIPE DETAIL:', recipeDetail.data);
-        // yield put({ type: 'SET_RECIPE_DETAIL' });
+        yield put({ type: 'FETCH_RECIPE_DETAIL'});
     } catch (error) {
         console.log('ERROR in PUT Recipe SAGA:', error);
     }
@@ -19,7 +19,7 @@ function* ingredientDetail(action) {
         console.log('ingredientDetail action payload is:', action.payload.id, action.payload);
         const ingredientDetail = yield axios.put(`/api/ing/edit/${action.payload.id}`, action.payload);
         console.log('fetch INGREDIENT:', ingredientDetail.data);
-        yield put({ type: 'SET_INGREDIENT' });
+        yield put({ type: 'FETCH_INGREDIENT', payload: action.payload.recipe_id });
     } catch (error) {
         console.log('ERROR in PUT Ingredient SAGA:', error);
     }
@@ -31,7 +31,7 @@ function* instructionDetail(action) {
 
         const instructionDetail = yield axios.put(`/api/ins/edit/${action.payload.id}`, action.payload);
         console.log('fetch INSTRUCTION:', instructionDetail.data);
-        yield put({ type: 'SET_INSTRUCTION'});
+        yield put({ type: 'FETCH_INSTRUCTION', payload: action.payload.recipe_id });
     } catch (error) {
         console.log('ERROR in PUT Instruction SAGA:', error);
     }

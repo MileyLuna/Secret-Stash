@@ -4,49 +4,37 @@ import MyStashRecipeDetail from '../MyStashRecipeDetail/MyStashRecipeDetail';
 import MyStashIngredientList from '../MyStashIngredientList/MyStashIngredientList';
 import MyStashInstructionList from '../MyStashIntructionList/MyStashInstructionList';
 
+import IngredientForm from '../IngredientForm/IngredientForm';
+
 //MUI
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 
-
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 function MyStashEdit() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    // const {id} = useParams();
 
     //reducer that's storing old/current value
-    const name = useSelector((store) => store.recipe.detailReducer);
-    const items = useSelector((store) => store.recipe.ingredientReducer);
-    const lists = useSelector((store) => store.recipe.instructionReducer);
-
-    //reducer that's storing new onchange value
-    const newName = useSelector((store) => store.edits.recipeEdit);
-    const newItem = useSelector((store) => store.edits.ingredientEdit);
-    const newList = useSelector((store) => store.edits.instructionEdit);
+    const recipe = useSelector((store) => store.recipe.detailReducer);
+    const ingredients = useSelector((store) => store.recipe.ingredientReducer);
+    const instructions = useSelector((store) => store.recipe.instructionReducer);
 
 
     const handleUpdate = (event) => {
         event.preventDefault();
         console.log('this id id:',);
 
-        //go to edit saga with new information to update DB
-        //payload is all information holding in reducer
-        // dispatch({ type: 'RECIPE_DETAIL', payload: newName });
-        // dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem });
-        // dispatch({ type: 'INSTRUCTION_DETAIL', payload: newList });
         //return to MyStashDetail
-        history.push(`/stashdetail/${newName[0].id}`)
+        history.push(`/stashdetail/${recipe[0].id}`)
     }
 
     const handleBack = () => {
-        history.push(`/stashdetail/${newName[0].id}`)
+        history.push(`/stashdetail/${recipe[0].id}`)
 
     }
 
@@ -59,29 +47,28 @@ function MyStashEdit() {
 
     return (
 
-        <>
-            <div>
-                <MyStashRecipeDetail />
+        <div className="main" >
+            <div className='recipe'>
+                <MyStashRecipeDetail recipe={recipe}/>
 
             </div>
 
 
-            <div>
+            <div className='ingredient'>
                 <h3>INGREDIENT</h3>
-
-                {items.map((item) => {
+                {ingredients.map((ingredient) => {
                     return (
-                        <MyStashIngredientList key={item.id} item={item} newItem={newItem} />
+                        <MyStashIngredientList key={ingredient.id} ingredient={ingredient} />
 
                     )
                 })}
             </div>
 
-            <div>
+            <div className='instruction'>
                 <h3>INSTRUCTION</h3>
-                {lists.map((list) => {
+                {instructions.map((instruction) => {
                     return (
-                        <MyStashInstructionList key={list.id} list={list} newList={newList} />
+                        <MyStashInstructionList key={instruction.id} instruction={instruction}  />
 
                     )
                 })}
@@ -106,7 +93,7 @@ function MyStashEdit() {
             </Button>
             </Stack>
 
-        </>
+        </div>
     )
 }
 

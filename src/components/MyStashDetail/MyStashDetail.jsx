@@ -23,7 +23,7 @@ function MyStashDetail() {
     // const recipes = useSelector((store) => store.recipe.recipeReducer);
     const ingredients = useSelector((store) => store.recipe.ingredientReducer);
     const instructions = useSelector((store) => store.recipe.instructionReducer);
-    const details = useSelector((store) => store.recipe.detailReducer);
+    const recipe = useSelector((store) => store.recipe.detailReducer);
  
     //onload automatically summon all information regarding this ID
     useEffect(() => {
@@ -41,10 +41,11 @@ function MyStashDetail() {
 
     //takes to MyStashEdit for updates option
     const handleEdit = () => {
-        console.log('whats in detail:', details);
-        console.log('whats in ingredient:', ingredients);
-        console.log('whats in instruction:', instructions);
-        dispatch({type: 'EDIT_RECIPE', payload: details})
+        // console.log('whats in detail:', recipe);
+        // console.log('whats in ingredient:', ingredients);
+        // console.log('whats in instruction:', instructions);
+
+        dispatch({type: 'EDIT_RECIPE', payload: recipe})
         dispatch({type: 'EDIT_INGREDIENT', payload: ingredients})
         dispatch({type: 'EDIT_INSTRUCTION', payload: instructions})
         //brings to edit of recipe view
@@ -83,17 +84,17 @@ function MyStashDetail() {
 
 
     return (
-        <div className="stashdetail">
+        <div className="main">
                 {/* show recipe name and pic */}
-                <div>
-                    <h1>{details[0]?.title}</h1>
-                    <img src={details[0]?.poster} />
+                <div className="recipe">
+                    <h1>{recipe[0]?.title}</h1>
+                    <img src={recipe[0]?.poster} />
                 </div>
 
 
             <br></br>
             {/* maps out ingredients for selected recipe */}
-            <div className="item">
+            <div className="ingredient">
                 <h3>INGREDIENT</h3>
 
                     <div>
@@ -109,7 +110,7 @@ function MyStashDetail() {
             <br></br>
 
             {/* maps out instruction for selected recipe */}
-            <div className="list">
+            <div className="instruction">
                 <h3>INSTRUCTION</h3>
 
                     <div>

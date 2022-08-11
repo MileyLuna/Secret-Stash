@@ -9,13 +9,13 @@ import { useSelector } from "react-redux";
 
 
 
-function MyStashInstructionList({ list, newList }) {
+function MyStashInstructionList({ instruction }) {
 
     const dispatch = useDispatch();
 
-    const [amount, setAmount] = useState('');
-    const [unit, setUnit] = useState('');
-    const [ingredient, setIngredient] = useState('');
+    const [step, setStep] = useState(instruction.step_num);
+    const [text, setText] = useState(instruction.text);
+
 
 
     const handleSave = (event) => {
@@ -24,40 +24,37 @@ function MyStashInstructionList({ list, newList }) {
 
         dispatch({
             type: 'INSTRUCTION_DETAIL',
-            payload: newList
+            payload: {
+                id: instruction.id,
+                recipe_id: instruction.recipe_id,
+                step: step,
+                text: text,
+            } 
         });
     }
-
-    const handleChange = (event, property) => {
-        dispatch({ type: 'CHANGE_INSTRUCTION', 
-        payload: {property: property, 
-            value: event.target.value }
-        })
-    }
-
 
 
     return (
         <>
 
-            <div key={list.id}>
+            <div key={instruction.id}>
                 <form onSubmit={handleSave}>
                     <Stack direction="row" spacing={3}>
 
                         <TextField
-                            label={list.step_num}
+                            label="step"
                             id="list-text"
-                            value={newList.step_num}
-                            onChange={(event) => handleChange(event, 'step')}
+                            value={step}
+                            onChange={(event) => setStep(event.target.value)}
                             size="small"
                             variant="standard"
                         />
 
                         <TextField
-                            label={list.text}
+                            label="text"
                             id="list-text"
-                            value={newList.text}
-                            onChange={(event) => handleChange(event, 'text')}
+                            value={text}
+                            onChange={(event) => setText(event.target.value)}
                             size="small"
                             variant="standard"
                         />

@@ -32,11 +32,16 @@ function UserPageDetail() {
 
 
     return (
-        <div>
+        <div className="main">
+            
+            <div className="recipe">
             <h1>{details[0]?.title}</h1>
             <img src={details[0]?.poster} />
+            </div>
 
             <br></br>
+
+            <div className="ingredient">
             <h3>INGREDIENT</h3>
             {ingredients.map((ing) => {
                 return (
@@ -45,7 +50,11 @@ function UserPageDetail() {
                     </div>
                 )
             })}
+            </div>
             <br></br>
+
+
+            <div className="instruction">
             <h3>INSTRUCTION</h3>
             {instructions.map((ins) => {
                 return (
@@ -55,14 +64,15 @@ function UserPageDetail() {
 
                 )
             })}
-
+</div>
+<br></br>
             <Button
                 variant="outlined"
                 size="small"
                 onClick={handleBack}>
                 BACK
             </Button>
-        </div>
+        </div >
 
     )
 }

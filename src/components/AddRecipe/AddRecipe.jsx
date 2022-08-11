@@ -110,6 +110,26 @@ function AddRecipe() {
                 variant="standard"
             />
 
+            <div className="container">
+                {/* <%= typeof msg != 'undefined' ? msg : '' %> */}
+                <form action="/upload" method="post" encType="multipart/form-data">
+                    <div className="file-field input-field">
+                        <div className="">
+                            <input name="image" type="file"/>
+                        <button type="submit" className="">SUBMIT</button>
+                        </div>
+                        {/* <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text"/>
+                        </div> */}
+                    </div>
+                </form>
+                
+                    <img
+                        src="<%= typeof file != 'undefined' ? file : '' %>"
+                        className="responsive-img"
+                    />
+            </div>
+
 
             <br></br>
 
@@ -126,7 +146,7 @@ function AddRecipe() {
                 <InstructionForm />
 
             </div>
-<br></br>
+            <br></br>
             <div>
                 <Stack
                     direction="row"
