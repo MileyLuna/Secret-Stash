@@ -41,13 +41,10 @@ function MyStashDetail() {
 
     //takes to MyStashEdit for updates option
     const handleEdit = () => {
-        // console.log('whats in detail:', recipe);
-        // console.log('whats in ingredient:', ingredients);
-        // console.log('whats in instruction:', instructions);
 
-        dispatch({type: 'EDIT_RECIPE', payload: recipe})
-        dispatch({type: 'EDIT_INGREDIENT', payload: ingredients})
-        dispatch({type: 'EDIT_INSTRUCTION', payload: instructions})
+        // dispatch({type: 'EDIT_RECIPE', payload: recipe})
+        // dispatch({type: 'EDIT_INGREDIENT', payload: ingredients})
+        // dispatch({type: 'EDIT_INSTRUCTION', payload: instructions})
         //brings to edit of recipe view
         history.push(`/stashedit`);
     }

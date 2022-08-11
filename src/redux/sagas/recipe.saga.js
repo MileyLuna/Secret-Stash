@@ -39,7 +39,7 @@ function* fetchIngredient(action) {
 function* fetchInstruction(action) {
     try {
         // passes the username and password from the payload to the server
-
+        console.log('fetchInstruction:', action.payload);
         const instructionDetail = yield axios.get(`/api/ins/detail/${action.payload}`);
         console.log('fetch INSTRUCTION:', instructionDetail.data);
         yield put({ type: 'SET_INSTRUCTION', payload: instructionDetail.data });

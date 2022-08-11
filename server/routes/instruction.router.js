@@ -9,6 +9,7 @@ router.get('/detail/:id', (req, res) => {
         const query = `SELECT * FROM "instruction" WHERE "recipe_id" = $1 ORDER BY "step_num" ASC;`;
         pool.query(query, [id])
             .then(result => {
+                // console.log('result:', result.rows);
                 res.send(result.rows);
             })
             .catch(err => {
