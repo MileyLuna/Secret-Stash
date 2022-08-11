@@ -2,6 +2,9 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import IconButton from '@mui/material/IconButton';
+
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -22,6 +25,9 @@ function MyStashInstructionList({ instruction }) {
         event.preventDefault();
         console.log('this id id:',);
 
+        console.log("instruction.recipe_id:", instruction.recipe_id);
+        console.log('instruction:', instruction);
+
         dispatch({
             type: 'INSTRUCTION_DETAIL',
             payload: {
@@ -29,9 +35,15 @@ function MyStashInstructionList({ instruction }) {
                 recipe_id: instruction.recipe_id,
                 step: step,
                 text: text,
-            } 
+            }
         });
     }
+
+    const handleDelete = () => {
+        
+    }
+
+
 
 
     return (
@@ -67,9 +79,19 @@ function MyStashInstructionList({ instruction }) {
                             onClick={handleSave}>
                             SAVE
                         </Button>
-                    </Stack>
-                </form>
-            </div>
+
+                        <Button
+                            variant="contained"
+                            onClick={handleDelete}
+                            color="error"
+                            startIcon={<DeleteIcon />}>
+                            Delete
+                        </Button>
+
+                </Stack>
+            </form>
+        </div>
+
 
 
         </>

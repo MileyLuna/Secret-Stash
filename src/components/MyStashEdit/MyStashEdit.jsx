@@ -4,7 +4,7 @@ import MyStashRecipeDetail from '../MyStashRecipeDetail/MyStashRecipeDetail';
 import MyStashIngredientList from '../MyStashIngredientList/MyStashIngredientList';
 import MyStashInstructionList from '../MyStashIntructionList/MyStashInstructionList';
 
-import IngredientForm from '../IngredientForm/IngredientForm';
+import MyStashInstructionForm from '../MyStashInstructionForm/MyStashInstructionForm';
 
 //MUI
 import Button from '@mui/material/Button';
@@ -28,6 +28,7 @@ function MyStashEdit() {
     const handleUpdate = (event) => {
         event.preventDefault();
         console.log('this id id:',);
+
 
         //return to MyStashDetail
         history.push(`/stashdetail/${recipe[0].id}`)
@@ -66,6 +67,10 @@ function MyStashEdit() {
 
             <div className='instruction'>
                 <h3>INSTRUCTION</h3>
+                <MyStashInstructionForm instructions={instructions}/>
+
+                <br></br>
+                <br></br>
                 {instructions.map((instruction) => {
                     return (
                         <MyStashInstructionList key={instruction.id} instruction={instruction}  />
