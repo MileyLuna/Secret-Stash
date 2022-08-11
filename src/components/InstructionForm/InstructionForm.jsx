@@ -33,6 +33,9 @@ function Instruction() {
         payload:{step, text}
         })
 
+    }
+
+    const handleDelete = () => {
 
     }
 
@@ -40,8 +43,6 @@ function Instruction() {
         setStep('');
         setText('');
     }
-
-
 
 
     return (

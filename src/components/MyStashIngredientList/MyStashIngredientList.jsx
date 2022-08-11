@@ -3,72 +3,64 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
 
-function MyStashIngredientList({ item, newItem }) {
+function MyStashIngredientList({ ingredient }) {
     const dispatch = useDispatch();
 
-    // const [amount, setAmount] = useState('');
-    // const [unit, setUnit] = useState('');
-    // const [ingredient, setIngredient] = useState('');
+    //initial values reference the table column NOT useState
+    //to show old values that might get replace
+    const [amount, setAmount] = useState(ingredient.amount);
+    const [unit, setUnit] = useState(ingredient.unit);
+    const [ingredients, setIngredients] = useState(ingredient.ingredient);
 
-    const [update, setUpdate] = useState(false);
-
-    // const edit = () => {
-    //     setUpdate(!update);
-    // }
 
     const handleSave = (event) => {
         event.preventDefault();
 
-        console.log('this ingredient id:', newItem)
 
-        dispatch({ type: 'INGREDIENT_DETAIL', payload: newItem })
+        dispatch({ type: 'INGREDIENT_DETAIL', 
+        payload: {
+            id: ingredient.id,
+            recipe_id: ingredient.recipe_id,
+            amount: amount,
+            unit: unit,
+            ingredient: ingredients
+        } 
+    });
+    // setUpdate(false);
     }
-
-    const handleChange = (event, property) => {
-        dispatch({ type: 'CHANGE_INGREDIENT', 
-        payload: {property: property, 
-                value: event.target.value }
-        })
-    }
-
-
 
 
     return (
         <>
-        {update ?
-            <div 
-            // key={item.id}
-            >
+
+            <div>
                 <form onSubmit={handleSave}>
                     <Stack direction="row" spacing={3}>
                         <TextField
-                            label={item.amount}
+                            label="amount"
                             id="amount"
-                            value={newItem.amount}
-                            onChange={(event) => handleChange(event,  'amount')}
+                            value={amount}
+                            onChange={(event) => setAmount(event.target.value)}
                             size="small"
                             variant="standard"
                         />
                         <TextField
-                            label={item.unit}
+                            label="unit"
                             id="unit"
-                            value={newItem.unit}
-                            onChange={(event) => handleChange(event, 'unit')}
+                            value={unit}
+                            onChange={(event) => setUnit(event.target.value)}
                             size="small"
                             variant="standard"
                         />
                         <TextField
-                            label={item.ingredient}
+                            label="ingredient"
                             id="ingredient"
-                            value={newItem.ingredient}
-                            onChange={(event) => handleChange(event, 'ingredient')}
+                            value={ingredients}
+                            onChange={(event) => setIngredients(event.target.value)}
                             size="small"
                             variant="standard"
                         />
@@ -85,18 +77,7 @@ function MyStashIngredientList({ item, newItem }) {
                     
                 </form>
             </div>
-                :
-                <div>
-                    <p>{item.amount} {item.unit} {item.ingredient}</p>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        onClick={() => setUpdate(!update)}>
-                        EDIT
-                    </Button>
-                </div>
-}
+
         </>
     )
 }

@@ -11,6 +11,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import './IngredientForm.css';
 
+
+
 function Ingredient() {
 
     const dispatch = useDispatch();
@@ -36,9 +38,9 @@ function Ingredient() {
 
     }
 
-    const handleDelete = () => {
-
-    }
+    // const handleDelete = () => {
+    //     dispatch({ type: 'CLEAR_INGREDIENT' });
+    // }
 
 
 
@@ -100,13 +102,13 @@ function Ingredient() {
                             </div>
 
                             <div>
-                                <IconButton
+                                {/* <IconButton
                                     aria-label="delete"
                                     color="error"
                                     size="small"
                                     onClick={handleDelete}>
                                     <RemoveIcon />
-                                </IconButton>
+                                </IconButton> */}
                             </div>
                         </div>
 
