@@ -5,7 +5,7 @@ import MyStashIngredientList from '../MyStashIngredientList/MyStashIngredientLis
 import MyStashInstructionList from '../MyStashIntructionList/MyStashInstructionList';
 
 import MyStashInstructionForm from '../MyStashInstructionForm/MyStashInstructionForm';
-
+import MyStashIngredientForm from '../MyStashIngredientForm/MyStashIngredientForm';
 //MUI
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -57,6 +57,9 @@ function MyStashEdit() {
 
             <div className='ingredient'>
                 <h3>INGREDIENT</h3>
+                <MyStashIngredientForm ingredients={ingredients}/>
+                <br></br>
+                <br></br>
                 {ingredients.map((ingredient) => {
                     return (
                         <MyStashIngredientList key={ingredient.id} ingredient={ingredient} />
@@ -64,7 +67,8 @@ function MyStashEdit() {
                     )
                 })}
             </div>
-
+            <br></br>
+                <br></br>
             <div className='instruction'>
                 <h3>INSTRUCTION</h3>
                 <MyStashInstructionForm instructions={instructions}/>

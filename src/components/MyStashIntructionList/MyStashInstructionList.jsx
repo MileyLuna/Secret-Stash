@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 import { useEffect, useState } from "react";
@@ -40,6 +41,7 @@ function MyStashInstructionList({ instruction }) {
     }
 
     const handleDelete = () => {
+        dispatch({type: 'DELETE_INSTRUCTION', payload: instruction.id})
         
     }
 
@@ -85,7 +87,6 @@ function MyStashInstructionList({ instruction }) {
                             onClick={handleDelete}
                             color="error"
                             startIcon={<DeleteIcon />}>
-                            Delete
                         </Button>
 
                 </Stack>

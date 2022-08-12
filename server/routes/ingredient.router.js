@@ -22,6 +22,26 @@ router.get('/detail/:id', (req, res) => {
 
 });
 
+router.post('/add', (req, res) => {
+    const item = req.body;
+
+    console.log('addIngredient:',req.body);
+
+    const addInstruction = `INSERT INTO "ingredient" ("amount", "unit", "ingredient","recipe_id")
+    VALUES ($1,$2,$3,$4)
+    RETURNING "recipe_id";`;
+
+    pool.query (addInstruction, [item.amount, item.unit, item.ingredient, item.recipe_id])
+    .then(result => {
+        console.log ('ingredient result:', result.rows);
+        res.send(result.rows);
+    }).catch (err => {
+        console.log('ERROR: ADD router:', err);
+        res.sendStatus(500)
+    })
+
+})
+
 router.put('/edit/:id', (req,res) => {
     const id = req.params.id;
     const item = req.body;
@@ -45,8 +65,27 @@ router.put('/edit/:id', (req,res) => {
     })
 
 
-})
+});
 
+router.delete('/delete/:id', (req, res) => {
+    if (req.isAuthenticated()) {
+        const id = req.params.id;
+
+        const query = `DELETE FROM "ingredient" WHERE "id" = $1 RETURNING "recipe_id" ;`;
+        pool.query(query, [id])
+            .then(result => {
+                res.send(result.rows);
+            })
+            .catch(err => {
+                console.log('ERROR: delete selected recipe', err);
+                res.sendStatus(500)
+            })
+    } else {
+        res.sendStatus(403);
+    }
+
+
+});
 
 
 module.exports = router;

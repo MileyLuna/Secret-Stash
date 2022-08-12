@@ -2,6 +2,8 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -30,9 +32,12 @@ function MyStashIngredientList({ ingredient }) {
             ingredient: ingredients
         } 
     });
-    // setUpdate(false);
     }
 
+    const handleDelete = () => {
+        dispatch({type: 'DELETE_INGREDIENT', payload: ingredient.id})
+        
+    }
 
     return (
         <>
@@ -71,6 +76,13 @@ function MyStashIngredientList({ ingredient }) {
                             size="small"
                             onClick={handleSave}>
                             SAVE
+                        </Button>
+
+                        <Button
+                            variant="contained"
+                            onClick={handleDelete}
+                            color="error"
+                            startIcon={<DeleteIcon />}>
                         </Button>
 
                     </Stack>
