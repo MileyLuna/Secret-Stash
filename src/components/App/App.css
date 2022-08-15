@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+
 html,
 body,
 #react-root {
@@ -5,28 +7,62 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'La Belle Aurore', Tahoma, Verdana, sans-serif, cursive;
   margin: 0px;
+  text-align: center;
+  background-color: #fff9c4;
 }
 
-img {
+/* Home and MyStash img */
+.recipe {
   display: inline-block;
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: 250px;
+  height: 150px;
+  border-radius: 5px;
+
 }
+
+/* Detail recipe img */
+.recipeDetail{
+  border-radius: 5px;
+  width: 350px;
+  height: 300px;
+
+}
+/* About page img */
+.about {
+  width: 200px;
+  height: 200px;
+}
+
 
 /* --------------------------------------------------------------------------------
 Something
 -------------------------------------------------------------------------------- */
-div .ingredient{
+div .ingredient {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
   padding: 5px;
+  line-height: 15px;
+  background-color: #fff8e1;
 }
 
-div .instruction{
+div .item {
+  columns: 2 auto;
+  column-gap: 40px;
+  /* width: 500px; */
+
+
+
+}
+
+div .instruction {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
   padding: 5px;
+  line-height: 20px;
+  background-color: #fff8e1;
 }
 
 div .main {
@@ -34,6 +70,22 @@ div .main {
   padding: 40px;
 }
 
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-size: 22px;
+}
+
+.Bcontainer {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 /* --------------------------------------------------------------------------------
 Container
@@ -50,12 +102,14 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #916514;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #d49114;
   color: #f8f8f8;
   font-size: 1.1rem;
+  font-family: 'La Belle Aurore', Tahoma, Verdana, sans-serif, cursive;
+
   outline: 0;
   cursor: pointer;
 }
@@ -76,7 +130,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #f7b740;
   text-decoration: none;
 }
 
@@ -93,8 +147,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #d49114;
+  color: #d49114;
 }
 
 /* --------------------------------------------------------------------------------
@@ -122,7 +176,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #ffffff;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }

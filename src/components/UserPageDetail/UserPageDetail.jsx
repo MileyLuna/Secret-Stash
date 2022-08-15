@@ -33,42 +33,44 @@ function UserPageDetail() {
 
     return (
         <div className="main">
-            
-            <div className="recipe">
-            <h1>{details[0]?.title}</h1>
-            <img src={details[0]?.poster} />
+
+            <div >
+                <h1>{details[0]?.title}</h1>
+                <img className='recipeDetail' src={details[0]?.poster} />
             </div>
 
             <br></br>
 
             <div className="ingredient">
-            <h3>INGREDIENT</h3>
-            {ingredients.map((ing) => {
-                return (
-                    <div key={ing.id}>
-                        <p>{ing.amount} {ing.unit} {ing.ingredient}</p>
-                    </div>
-                )
-            })}
+                <h2>Ingredients</h2>
+                <div className="item">
+                    {ingredients.map((ing) => {
+                        return (
+                            <div key={ing.id}>
+                                <p>{ing.amount} {ing.unit} {ing.ingredient}</p>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
             <br></br>
 
 
             <div className="instruction">
-            <h3>INSTRUCTION</h3>
-            {instructions.map((ins) => {
-                return (
-                    <div key={ins.id}>
-                        <p>{ins.step_num}. {ins.text}</p>
-                    </div>
+                <h2>Instructions</h2>
+                {instructions.map((ins) => {
+                    return (
+                        <div key={ins.id}>
+                            <p>{ins.step_num}. {ins.text}</p>
+                        </div>
 
-                )
-            })}
-</div>
-<br></br>
+                    )
+                })}
+            </div>
+            <br></br>
             <Button
                 variant="outlined"
-                size="small"
+                size="medium"
                 onClick={handleBack}>
                 BACK
             </Button>

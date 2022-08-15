@@ -5,7 +5,7 @@ import UserPageItem from '../UserPageItem/UserPageItem';
 
 //MUI
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid'; 
+import Grid from '@mui/material/Grid';
 
 function UserPage() {
 
@@ -19,17 +19,18 @@ function UserPage() {
   }, []);
 
   return (
+    <div className='main'>
+      <Box >
 
-    <Box sx={{ flexGrow: 1 }}>
-
-      <Grid container spacing={3}>
-        {recipes.map((recipe) => {
-          return (
-            <UserPageItem key={recipe.id} recipe={recipe}/>
-          )
-        })}
-      </Grid>
-    </Box>
+        <Grid  container spacing={10}>
+          {recipes.map((recipe) => {
+            return (
+                <UserPageItem key={recipe.id} recipe={recipe} />
+            )
+          })}
+        </Grid>
+      </Box>
+    </div>
   );
 }
 
