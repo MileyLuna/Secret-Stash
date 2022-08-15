@@ -47,7 +47,7 @@ function MyStashRecipeDetail({recipe}) {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                size="small"
+                                size="medium"
                                 onClick={handleSave}>
                                 SAVE
                             </Button>
@@ -55,7 +55,7 @@ function MyStashRecipeDetail({recipe}) {
                     </form>
 
                     <br></br>
-                    <img src={recipe[0]?.poster} />
+                    <img className='recipeDetail'src={recipe[0]?.poster} />
 
 
                 </div>

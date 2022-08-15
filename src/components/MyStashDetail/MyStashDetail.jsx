@@ -24,7 +24,7 @@ function MyStashDetail() {
     const ingredients = useSelector((store) => store.recipe.ingredientReducer);
     const instructions = useSelector((store) => store.recipe.instructionReducer);
     const recipe = useSelector((store) => store.recipe.detailReducer);
- 
+
     //onload automatically summon all information regarding this ID
     useEffect(() => {
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
@@ -82,73 +82,76 @@ function MyStashDetail() {
 
     return (
         <div className="main">
-                {/* show recipe name and pic */}
-                <div className="recipe">
-                    <h1>{recipe[0]?.title}</h1>
-                    <img src={recipe[0]?.poster} />
-                </div>
+            {/* show recipe name and pic */}
+            <div >
+                <h1>{recipe[0]?.title}</h1>
+                <img className='recipe' src={recipe[0]?.poster} />
+            </div>
 
 
             <br></br>
             {/* maps out ingredients for selected recipe */}
             <div className="ingredient">
-                <h3>INGREDIENT</h3>
+                <h2>Ingredients</h2>
+            <div className="item">
 
-                    <div>
-                        {ingredients.map((item) => {
-                            return (
-                                <p key={item.id}> {item.amount} {item.unit} {item.ingredient}</p>
-                            )
-                        })}
-                    </div>
-
-
+                    {ingredients.map((item) => {
+                        return (
+                            <p key={item.id}> {item.amount} {item.unit} {item.ingredient}</p>
+                        )
+                    })}
             </div>
+            </div>
+
+
             <br></br>
 
-            {/* maps out instruction for selected recipe */}
+            {/* maps out instruction for selected recipe */ }
             <div className="instruction">
-                <h3>INSTRUCTION</h3>
-
-                    <div>
-                        {instructions.map((list) => {
-                            return (
-                                <p key={list.id}>{list.step_num}. {list.text} </p>
-                            )
-                        })}
+                <div>
+                <h2>Instructions</h2>
+                    {instructions.map((list) => {
+                        return (
+                            <p key={list.id}>{list.step_num}. {list.text} </p>
+                        )
+                    })}
                     </div>
-
             </div>
 
             <br></br>
-
-            <Stack direction="row" spacing={3}>
-                <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={handleBack}>
-                    BACK
-                </Button>
+            <div>
+                <Stack
+                justifyContent="center"
+                    direction="row"
+                    spacing={3}>
+                    <Button
+                        variant="outlined"
+                        size="medium"
+                        onClick={handleBack}>
+                        BACK
+                    </Button>
 
 
                     <Button
                         variant="contained"
                         color="primary"
-                        size="small"
+                        size="medium"
                         onClick={handleEdit}>
                         EDIT
                     </Button>
+                </Stack>
 
-
+                <br></br>
                 <Button
                     variant="contained"
                     onClick={handleDelete}
                     color="error"
+                    size="medium"
                     startIcon={<DeleteIcon />}>
                     Delete
                 </Button>
-            </Stack>
-        </div>
+            </div>
+        </div >
     )
 }
 

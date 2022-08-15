@@ -30,7 +30,7 @@ function Instruction() {
         clearInputs();
         dispatch({
             type: 'HOLD_INSTRUCTION',
-        payload:{step, text}
+            payload: { step, text }
         })
 
     }
@@ -44,6 +44,12 @@ function Instruction() {
         setText('');
     }
 
+    const fieldValues = () => {
+        setStep(1);
+        setText('drink up');
+
+    }
+
 
     return (
         <>
@@ -55,10 +61,13 @@ function Instruction() {
                         id="standard-size-small1"
                         value={step}
                         onChange={(event) => setStep(event.target.value)}
+                        // auto-fill for testing
+                        onClick={fieldValues}
                         size="small"
                         variant="standard"
                     />
                     <TextField
+                        fullWidth
                         label="Step"
                         id="standard-size-small2"
                         value={text}
@@ -80,20 +89,20 @@ function Instruction() {
 
             <br></br>
             <div>
-                {hold.map((item,i) => {
-                    return(
+                {hold.map((item, i) => {
+                    return (
                         <div key={i} className="item">
 
-                        <p >{item.step} {item.text} </p>
+                            <p >{item.step} {item.text} </p>
 
-                    
-                        <IconButton
-                        aria-label="delete"
-                        color="error"
-                        size="small"
-                        >
-                        <RemoveIcon />
-                    </IconButton>
+
+                            {/* <IconButton
+                                aria-label="delete"
+                                color="error"
+                                size="small"
+                            >
+                                <RemoveIcon />
+                            </IconButton> */}
                         </div>
                     )
                 })}

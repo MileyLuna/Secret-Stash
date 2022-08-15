@@ -60,14 +60,6 @@ function AddRecipe() {
         // console.log('this is recipe title:', name);
 
         Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-        })
-
-        Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Added to The Vault!',
@@ -109,7 +101,7 @@ function AddRecipe() {
                 size="small"
                 variant="standard"
             />
-
+            <br></br>
             {/* <div className="container">
                <%= typeof msg != 'undefined' ? msg : '' %> 
                 <form action="/upload" method="post" encType="multipart/form-data">
@@ -134,16 +126,16 @@ function AddRecipe() {
 
             
 
-
+<br></br>
             <div className="ingredient">
-                <p>Ingredients</p>
+                <h2>Ingredients</h2>
 
                 <IngredientForm />
 
             </div>
             <br></br>
             <div className="instruction">
-                <p>Intructions</p>
+                <h2>Intructions</h2>
                 <InstructionForm />
 
             </div>
@@ -151,19 +143,19 @@ function AddRecipe() {
             <div>
                 <Stack
                     direction="row"
-                    spacing={3}
-                    justifyContent="space-around"
-                    alignItems="center">
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={3}>
                     <Button
                         variant="outlined"
-                        size="small"
+                        size="medium"
                         onClick={handleBack}>
-                        BACK
+                        My Stash
                     </Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        size="small"
+                        size="medium"
                         onClick={handleClear}>
                         CLEAR
                     </Button>
@@ -171,7 +163,7 @@ function AddRecipe() {
                     <Button
                         variant="contained"
                         color="success"
-                        size="small"
+                        size="medium"
                         onClick={handleSave}>
                         SAVE
                     </Button>

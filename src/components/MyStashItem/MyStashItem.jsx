@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
 
 function MyStashItem({ recipe }) {
 
@@ -15,6 +16,20 @@ function MyStashItem({ recipe }) {
         textAlign: 'center',
         color: theme.palette.text.secondary,
     }));
+
+    const useStyles = makeStyles({
+        root: {
+            // flexGrow: 1,
+            background: '#fff8e1',
+            border: 0,
+            borderRadius: 3,
+            // color: 'white',
+            padding: '5px 5px',
+        },
+    });
+
+    const classes = useStyles();
+
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -31,10 +46,10 @@ function MyStashItem({ recipe }) {
     }
 
     return (
-        <Grid item xs key={recipe.id} onClick={handleclick}>
-            <Item>
+        <Grid item  xs={3} sm={3} md={3} key={recipe.id} onClick={handleclick}>
+            <Item className={classes.root}>
+                <img className='recipe' src={recipe.poster} />
                 <p>{recipe.title}</p>
-                <img src={recipe.poster} />
             </Item>
 
         </Grid>

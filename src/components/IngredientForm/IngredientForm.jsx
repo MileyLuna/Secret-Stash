@@ -4,8 +4,6 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import RemoveIcon from '@mui/icons-material/Remove';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
@@ -50,6 +48,15 @@ function Ingredient() {
         setIngredient('');
     }
 
+    const fieldValues = () => {
+        setAmount(1);
+        setUnit('cup');
+        setIngredient('water');
+
+
+    }
+
+
     return (
         <>
             <form onSubmit={handleAdd}>
@@ -59,6 +66,8 @@ function Ingredient() {
                         id="standard-size-small"
                         value={amount}
                         onChange={(event) => setAmount(event.target.value)}
+                        // auto-fill for testing
+                        onClick={fieldValues}
                         size="small"
                         variant="standard"
                     />
@@ -71,6 +80,7 @@ function Ingredient() {
                         variant="standard"
                     />
                     <TextField
+                        fullWidth
                         label="Ingredient"
                         id="standard-size-small3"
                         value={ingredient}
@@ -81,7 +91,6 @@ function Ingredient() {
 
                     <IconButton
                         aria-label="add"
-                        color="primary"
                         type='submit'
                         onClick={handleAdd}>
                         <AddBoxIcon />

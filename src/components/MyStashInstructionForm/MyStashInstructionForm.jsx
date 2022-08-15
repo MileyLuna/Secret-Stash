@@ -5,12 +5,12 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 
 
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 
 
-function MyStashInstructionForm({instructions}) {
+function MyStashInstructionForm({ instructions }) {
     const dispatch = useDispatch();
 
     const [step, setStep] = useState('');
@@ -21,28 +21,25 @@ function MyStashInstructionForm({instructions}) {
         event.preventDefault();
         //post update/insert into DB
         clearInputs();
-        // dispatch({ type: 'HOLD_INSTRUCTION', payload: { step, text } });
 
-
-        console.log('instructions:', instructions);
-        console.log("instructions.recipe_id:", instructions[0].recipe_id);
-
+        // console.log('instructions:', instructions);
+        // console.log("instructions.recipe_id:", instructions[0].recipe_id);
 
         dispatch({
-            type: 'ADD_INSTRUCTION', 
+            type: 'ADD_INSTRUCTION',
             payload: {
                 step_num: Number(step),
                 text: text,
                 recipe_id: instructions[0].recipe_id,
             }
         });
-        // dispatch({ type: 'CLEAR_INSTRUCTION' });
     }
 
     const clearInputs = () => {
         setStep('');
         setText('');
     }
+
 
     return (
         <>
@@ -59,6 +56,7 @@ function MyStashInstructionForm({instructions}) {
                             variant="standard"
                         />
                         <TextField
+                            fullWidth
                             label="Step"
                             id="text"
                             value={text}

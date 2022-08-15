@@ -40,9 +40,10 @@ function MyStashIngredientForm({ ingredients }) {
         setIngredient('');
     }
 
+
     return (
         <>
-            <h1>test</h1>
+
             <div>
                 <form onSubmit={handleAdd}>
                     <Stack direction="row" spacing={3}>
@@ -64,6 +65,7 @@ function MyStashIngredientForm({ ingredients }) {
                         />
 
                         <TextField
+                            fullWidth
                             label="Ingredient"
                             id="ingredient"
                             value={ingredient}

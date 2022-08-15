@@ -2,14 +2,10 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
 
 
@@ -65,6 +61,7 @@ function MyStashInstructionList({ instruction }) {
                         />
 
                         <TextField
+                        fullWidth
                             label="text"
                             id="list-text"
                             value={text}
@@ -75,17 +72,18 @@ function MyStashInstructionList({ instruction }) {
 
 
                         <Button
-                            variant="contained"
+                            variant="text"
                             color="primary"
-                            size="small"
+                            size="medium"
                             onClick={handleSave}>
                             SAVE
                         </Button>
 
                         <Button
-                            variant="contained"
+                            variant="text"
                             onClick={handleDelete}
                             color="error"
+                            size="medium"
                             startIcon={<DeleteIcon />}>
                         </Button>
 
