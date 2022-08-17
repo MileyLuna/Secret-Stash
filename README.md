@@ -64,15 +64,6 @@ If package.jason does not have react, redux, and logger:
 - Run `npm install redux-logger@3`
 
 
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-
 ## Screen Recordings
 https://user-images.githubusercontent.com/83591115/185019283-f44a39d5-b22d-42a2-89fb-62bae2ecdfd4.mov
 
