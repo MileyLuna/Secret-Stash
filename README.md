@@ -56,7 +56,7 @@ Additional data in database.sql.
 - Navigate to `localhost:3000`
 
 if Material UI did not come in package.json:
-- Run npm install @mui/material @emotion/react @emotion/styled
+- Run `npm install @mui/material @emotion/react @emotion/styled`
 
 If package.jason does not have react, redux, and logger:
 
