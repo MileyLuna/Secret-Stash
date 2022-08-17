@@ -2,10 +2,10 @@
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { makeStyles } from '@mui/styles';
+
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
-import { makeStyles } from '@mui/styles';
 
 
 function UserPageList({ recipe }) {
@@ -18,7 +18,7 @@ function UserPageList({ recipe }) {
         textAlign: 'center',
         color: theme.palette.text.secondary,
     }));
-
+    //MUI
     const useStyles = makeStyles({
         root: {
             // flexGrow: 1,
@@ -29,7 +29,7 @@ function UserPageList({ recipe }) {
             padding: '5px 5px',
         },
     });
-
+    //MUI
     const classes = useStyles();
 
 
@@ -37,7 +37,7 @@ function UserPageList({ recipe }) {
     const history = useHistory();
 
     //image click function
-    const handleclick = (id) => {
+    const handleClick = (id) => {
         console.log('Recipe ID of:', id);
 
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: recipe.id });
@@ -48,7 +48,7 @@ function UserPageList({ recipe }) {
     }
 
     return (
-        <Grid  item xs={3} sm={3} md={3} key={recipe.id} onClick={handleclick}>
+        <Grid  item xs={3} sm={3} md={3} key={recipe.id} onClick={handleClick}>
             <Item className={classes.root}>
                 <img className='recipe' src={recipe.poster} />
                 <p>{recipe.title}</p>

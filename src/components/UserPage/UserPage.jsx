@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+//component
 import UserPageItem from '../UserPageItem/UserPageItem';
 
 //MUI
@@ -9,11 +9,11 @@ import Grid from '@mui/material/Grid';
 
 function UserPage() {
 
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const dispatch = useDispatch();
 
   const recipes = useSelector((store) => store.recipe.recipeReducer);
 
+  //on page load fetch all from recipe table in database
   useEffect(() => {
     dispatch({ type: 'FETCH_RECIPE' });
   }, []);

@@ -35,20 +35,11 @@ function Instruction() {
 
     }
 
-    const handleDelete = () => {
-
-    }
-
     const clearInputs = () => {
         setStep('');
         setText('');
     }
 
-    const fieldValues = () => {
-        setStep(1);
-        setText('drink up');
-
-    }
 
 
     return (
@@ -61,8 +52,6 @@ function Instruction() {
                         id="standard-size-small1"
                         value={step}
                         onChange={(event) => setStep(event.target.value)}
-                        // auto-fill for testing
-                        onClick={fieldValues}
                         size="small"
                         variant="standard"
                     />

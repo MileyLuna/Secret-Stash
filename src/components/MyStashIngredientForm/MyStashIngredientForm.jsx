@@ -1,13 +1,11 @@
+//MUI
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
-
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-
-
+import { useDispatch } from "react-redux";
 
 
 function MyStashIngredientForm({ ingredients }) {
@@ -20,7 +18,7 @@ function MyStashIngredientForm({ ingredients }) {
     const handleAdd = (event) => {
         console.log('clicked add');
         event.preventDefault();
-        //post update/insert into DB
+
         clearInputs();
 
         dispatch({

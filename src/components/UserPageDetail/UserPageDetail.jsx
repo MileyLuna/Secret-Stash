@@ -16,14 +16,15 @@ function UserPageDetail() {
     const ingredients = useSelector((store) => store.recipe.ingredientReducer);
     const instructions = useSelector((store) => store.recipe.instructionReducer);
     const details = useSelector((store) => store.recipe.detailReducer);
-
+    
+    //on page load fetch selected all information related to selected recipe ID
     useEffect(() => {
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: id });
         dispatch({ type: 'FETCH_INGREDIENT', payload: id });
         dispatch({ type: 'FETCH_INSTRUCTION', payload: id });
     }, [])
 
-    //back button
+    //back button to go back to home page
     const handleBack = () => {
         console.log('GOING BACK');
         history.push('/user');

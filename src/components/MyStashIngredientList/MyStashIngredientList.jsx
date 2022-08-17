@@ -21,7 +21,6 @@ function MyStashIngredientList({ ingredient }) {
     const handleSave = (event) => {
         event.preventDefault();
 
-
         dispatch({
             type: 'INGREDIENT_DETAIL',
             payload: {
@@ -34,6 +33,7 @@ function MyStashIngredientList({ ingredient }) {
         });
     }
 
+    //delete this selected row from ingredient table
     const handleDelete = () => {
         dispatch({ type: 'DELETE_INGREDIENT', payload: ingredient.id })
 

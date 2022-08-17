@@ -23,17 +23,11 @@ function AddRecipe() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    //bring store to utilize user id
-    // const user = useSelector((store) => store.user);
-    // const user_id = user.id;
-
     //bring in store that's holding new input
     const ingredient = useSelector((store) => store.holdIngredientReducer);
     const instruction = useSelector((store) => store.holdInstructionReducer);
 
-
     const [name, setName] = useState('');
-
 
     const handleBack = () => {
         console.log('clicked back');
@@ -58,7 +52,7 @@ function AddRecipe() {
         });
 
         // console.log('this is recipe title:', name);
-
+        //sweet alert 
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -170,11 +164,7 @@ function AddRecipe() {
                 </Stack>
 
             </div>
-
-
         </div>
-
-
 
     )
 

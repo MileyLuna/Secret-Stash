@@ -48,14 +48,6 @@ function Ingredient() {
         setIngredient('');
     }
 
-    const fieldValues = () => {
-        setAmount(1);
-        setUnit('cup');
-        setIngredient('water');
-
-
-    }
-
 
     return (
         <>
@@ -66,8 +58,6 @@ function Ingredient() {
                         id="standard-size-small"
                         value={amount}
                         onChange={(event) => setAmount(event.target.value)}
-                        // auto-fill for testing
-                        onClick={fieldValues}
                         size="small"
                         variant="standard"
                     />

@@ -3,12 +3,8 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
-
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
-
-
-
 
 function MyStashInstructionForm({ instructions }) {
     const dispatch = useDispatch();
@@ -19,7 +15,6 @@ function MyStashInstructionForm({ instructions }) {
     const handleAdd = (event) => {
         console.log('clicked add');
         event.preventDefault();
-        //post update/insert into DB
         clearInputs();
 
         // console.log('instructions:', instructions);
@@ -39,7 +34,6 @@ function MyStashInstructionForm({ instructions }) {
         setStep('');
         setText('');
     }
-
 
     return (
         <>

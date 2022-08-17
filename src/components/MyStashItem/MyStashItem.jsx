@@ -16,7 +16,7 @@ function MyStashItem({ recipe }) {
         textAlign: 'center',
         color: theme.palette.text.secondary,
     }));
-
+    //MUI
     const useStyles = makeStyles({
         root: {
             // flexGrow: 1,
@@ -27,15 +27,14 @@ function MyStashItem({ recipe }) {
             padding: '5px 5px',
         },
     });
-
+    //MUI
     const classes = useStyles();
-
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    //image click function
-    const handleclick = (id) => {
+    //grab onto this recipe information and take it to view stashdetail on click
+    const handleClick = (id) => {
         console.log('Recipe ID of:', id);
 
         dispatch({ type: 'FETCH_RECIPE_DETAIL', payload: recipe.id});
@@ -46,7 +45,7 @@ function MyStashItem({ recipe }) {
     }
 
     return (
-        <Grid item  xs={3} sm={3} md={3} key={recipe.id} onClick={handleclick}>
+        <Grid item  xs={3} sm={3} md={3} key={recipe.id} onClick={handleClick}>
             <Item className={classes.root}>
                 <img className='recipe' src={recipe.poster} />
                 <p>{recipe.title}</p>
