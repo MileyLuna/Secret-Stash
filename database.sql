@@ -16,7 +16,7 @@ CREATE TABLE "recipe" (
   "id" SERIAL PRIMARY KEY,
   "title" VARCHAR(120) NOT NULL,
   "poster"  VARCHAR(120),
-  "user_id" INT REFERENCES "user"
+  "user_id" INT REFERENCES "user" ON DELETE CASCADE
 );
 
 CREATE TABLE "ingredient" (
@@ -24,15 +24,14 @@ CREATE TABLE "ingredient" (
   "amount" VARCHAR(20) NOT NULL,
   "unit"  VARCHAR(20) NOT NULL,
   "ingredient" VARCHAR(100) NOT NULL,
-  "recipe_id" INT REFERENCES "recipe"
+  "recipe_id" INT REFERENCES "recipe" ON DELETE CASCADE
 );
 
 CREATE TABLE "instruction" (
   "id" SERIAL PRIMARY KEY,
-  "step_num" INT NOT NULL,
+  "step_num" VARCHAR(20),
   "text"  TEXT,
-  "recipe_id" INT REFERENCES "recipe"
-
+  "recipe_id" INT REFERENCES "recipe" ON DELETE CASCADE
 );
 
 INSERT INTO "recipe" 
