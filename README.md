@@ -10,7 +10,7 @@ _Duration: 2 week sprint_
 
 Secret Stash allow users to share their recipe with the Secret Stash community. The Home page shows all recipes from all users. My Stash shows the logged user recipe. From there the user can add a new recipe, or upon reviewing their recipe they can edit or delete it.
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP]([https://secure-beyond-28545.herokuapp.com/#/home])
+To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://secure-beyond-28545.herokuapp.com/#/home)
 
 ## Challenges
 I faced two challenges while building this application.
