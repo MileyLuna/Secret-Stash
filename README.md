@@ -73,11 +73,5 @@ https://user-images.githubusercontent.com/83591115/185019363-5d3ff702-eb05-4fae-
 
 
 ## Acknowledgement
-
-<<<<<<< HEAD
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
-
-## Screenshots/video 
-=======
 Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. Thanks to our instructors - Liz and Dane for their guidance and dynamic teaching skills. Last, but not least Thanks to all my classmates for their support and ecstatic attitude. Special Thanks to Maria Isabel, Avery, Issac, Deigo, Nate, and Mike for being rubber duckies, providing insight, and debugging!
 >>>>>>> 4618fb9901b94fd0c58e1a6bee82992e7ba333a5
