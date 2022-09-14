@@ -4,7 +4,7 @@
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/scottbromander/the_marketplace.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/scottbromander/the_marketplace.svg?style=social)
 
-# Prime Solo Project Starting Repo
+# Prime Solo Project - Secret Stash
 
 _Duration: 2 week sprint_
 
